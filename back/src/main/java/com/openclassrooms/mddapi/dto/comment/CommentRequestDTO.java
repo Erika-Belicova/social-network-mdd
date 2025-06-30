@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.dto;
+package com.openclassrooms.mddapi.dto.comment;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
