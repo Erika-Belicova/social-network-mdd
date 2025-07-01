@@ -11,11 +11,17 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class CommentResponseDTO {
 
-    final private Long id;
+    private final Long id;
 
-    final private String username;
+    @JsonProperty("post_id")
+    private final Long postId;
 
-    final private String content;
+    @JsonProperty("user_id")
+    private final Long userId;
+
+    private final String username;
+
+    private final String content;
 
     @JsonProperty("created_at")
     @JsonFormat(pattern = "yyyy/MM/dd")
