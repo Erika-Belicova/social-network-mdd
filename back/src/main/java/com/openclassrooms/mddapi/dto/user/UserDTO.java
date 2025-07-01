@@ -1,16 +1,14 @@
 package com.openclassrooms.mddapi.dto.user;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 
-@Getter
-@RequiredArgsConstructor
+@Data
 public class UserDTO {
 
-    private final Long id;
+    private Long id;
 
-    private final String username;
+    private String username;
 
-    private final String email;
+    private String email;
 
 }

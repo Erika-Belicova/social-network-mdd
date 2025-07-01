@@ -1,16 +1,14 @@
 package com.openclassrooms.mddapi.dto.topic;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 
-@Getter
-@RequiredArgsConstructor
+@Data
 public class TopicDTO {
 
-    private final Long id;
+    private Long id;
 
-    private final String title;
+    private String title;
 
-    private final String description;
+    private String description;
 
 }
