@@ -23,4 +23,25 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("An unexpected error occurred"));
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException exception) {
+        logger.error("UserNotFoundException: ", exception);
+        // 404 user not found
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePostNotFoundException(PostNotFoundException exception) {
+        logger.error("PostNotFoundException: ", exception);
+        // 404 post not found
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(TopicNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleTopicNotFoundException(TopicNotFoundException exception) {
+        logger.error("TopicNotFoundException: ", exception);
+        // 404 topic not found
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
+    }
+
 }
