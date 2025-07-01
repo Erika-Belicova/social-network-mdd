@@ -13,22 +13,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostResponseDTO {
 
-    final private Long id;
+    private final Long id;
 
     @JsonProperty("topic_id")
-    final private Long topicId;
+    private final Long topicId;
 
     @JsonProperty("user_id")
-    final private Long userId;
+    private final Long userId;
 
-    final private String title;
+    private final String title;
 
-    final private String content;
+    private final String content;
 
     @JsonProperty("created_at")
     @JsonFormat(pattern = "yyyy/MM/dd")
     final private LocalDateTime createdAt;
 
-    final private List<CommentResponseDTO> comments;
+    private final List<CommentResponseDTO> comments;
 
 }

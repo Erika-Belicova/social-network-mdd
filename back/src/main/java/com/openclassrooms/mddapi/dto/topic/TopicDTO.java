@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TopicDTO {
 
-    final Long id;
+    private final Long id;
 
-    final private String title;
+    private final String title;
 
-    final private String description;
+    private final String description;
 
 }
