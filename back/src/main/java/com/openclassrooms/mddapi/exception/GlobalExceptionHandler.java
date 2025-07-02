@@ -44,4 +44,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
     }
 
+    @ExceptionHandler(JwtGenerationException.class)
+    public ResponseEntity<ErrorResponse> handleJwtGenerationException(JwtGenerationException exception) {
+        logger.error("JwtGenerationException: ", exception);
+        // 500 server error
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(exception.getMessage()));
+    }
+
 }
