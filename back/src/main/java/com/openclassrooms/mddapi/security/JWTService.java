@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.service;
+package com.openclassrooms.mddapi.security;
 
 import com.openclassrooms.mddapi.configuration.JwtProperties;
 import com.openclassrooms.mddapi.exception.JwtGenerationException;
