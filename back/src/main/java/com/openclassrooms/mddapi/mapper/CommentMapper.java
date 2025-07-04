@@ -3,8 +3,6 @@ package com.openclassrooms.mddapi.mapper;
 import com.openclassrooms.mddapi.dto.comment.CommentRequestDTO;
 import com.openclassrooms.mddapi.dto.comment.CommentResponseDTO;
 import com.openclassrooms.mddapi.model.Comment;
-import com.openclassrooms.mddapi.model.Post;
-import com.openclassrooms.mddapi.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,15 +22,25 @@ public class CommentMapper {
 
     /** Convert Comment entity to CommentResponseDTO */
     public CommentResponseDTO toCommentResponseDTO(Comment comment) {
-        return modelMapper.map(comment, CommentResponseDTO.class);
+        CommentResponseDTO commentResponseDTO = modelMapper.map(comment, CommentResponseDTO.class);
+
+        // manually map nested user details if present
+        if (comment.getUser() != null) {
+            commentResponseDTO.setUserId(comment.getUser().getId());
+            commentResponseDTO.setUsername(comment.getUser().getUsername());
+        }
+
+        // manually map nested post id if present
+        if (comment.getPost() != null) {
+            commentResponseDTO.setPostId(comment.getPost().getId());
+        }
+
+        return commentResponseDTO;
     }
 
     /** Convert CommentRequestDTO to Comment entity */
-    public Comment toCommentEntity(CommentRequestDTO commentRequestDTO, User user, Post post) {
-        Comment comment = modelMapper.map(commentRequestDTO, Comment.class);
-        comment.setUser(user);
-        comment.setPost(post);
-        return comment;
+    public Comment toCommentEntity(CommentRequestDTO commentRequestDTO) {
+        return modelMapper.map(commentRequestDTO, Comment.class);
     }
 
     /** Converts a list of comment entities to a list of CommentResponseDTOs */
