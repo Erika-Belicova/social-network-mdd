@@ -3,8 +3,6 @@ package com.openclassrooms.mddapi.mapper;
 import com.openclassrooms.mddapi.dto.post.PostRequestDTO;
 import com.openclassrooms.mddapi.dto.post.PostResponseDTO;
 import com.openclassrooms.mddapi.model.Post;
-import com.openclassrooms.mddapi.model.Topic;
-import com.openclassrooms.mddapi.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,11 +26,8 @@ public class PostMapper {
     }
 
     /** Convert PostRequestDTO to Post entity */
-    public Post toPostEntity(PostRequestDTO postRequestDTO, User user, Topic topic) {
-        Post post = modelMapper.map(postRequestDTO, Post.class);
-        post.setUser(user);
-        post.setTopic(topic);
-        return post;
+    public Post toPostEntity(PostRequestDTO postRequestDTO) {
+        return modelMapper.map(postRequestDTO, Post.class);
     }
 
     /** Converts a list of post entities to a list of PostResponseDTOs */
