@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.annotation.UsernameOrEmailRequired;
 import com.openclassrooms.mddapi.dto.user.LoginRequestDTO;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Validator to check that either username or email
@@ -15,8 +16,8 @@ public class UsernameOrEmailValidator implements ConstraintValidator<UsernameOrE
     public boolean isValid(LoginRequestDTO loginRequestDTO, ConstraintValidatorContext constraintValidatorContext) {
         if (loginRequestDTO == null) return false;
 
-        boolean hasUsername = loginRequestDTO.getUsername() != null && !loginRequestDTO.getUsername().trim().isEmpty();
-        boolean hasEmail = loginRequestDTO.getEmail() != null && !loginRequestDTO.getEmail().trim().isEmpty();
+        boolean hasUsername = StringUtils.isNotBlank(loginRequestDTO.getUsername());
+        boolean hasEmail = StringUtils.isNotBlank(loginRequestDTO.getEmail());
 
         return hasUsername || hasEmail;
     }

@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.dto.user.RegisterRequestDTO;
 import com.openclassrooms.mddapi.dto.user.UpdateUserDTO;
 import com.openclassrooms.mddapi.dto.user.UserDTO;
 import com.openclassrooms.mddapi.model.User;
+import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,19 @@ public class UserMapper {
     @Autowired
     public UserMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
+    }
+
+    @PostConstruct
+    public void init() {
+        // skip password mapping for security reasons as it will be encoded in the service
+        skipPasswordMapping(RegisterRequestDTO.class);
+        skipPasswordMapping(UpdateUserDTO.class);
+    }
+
+    /** Configures ModelMapper to skip mapping the password field for the given source DTO class */
+    private void skipPasswordMapping(Class<?> sourceType) {
+        modelMapper.typeMap(sourceType, User.class)
+                .addMappings(mapper -> mapper.skip(User::setPassword));
     }
 
     /** Convert User entity to UserDTO */
