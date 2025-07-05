@@ -2,12 +2,17 @@ package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.user.LoginRequestDTO;
 import com.openclassrooms.mddapi.dto.user.RegisterRequestDTO;
+import com.openclassrooms.mddapi.exception.JwtValidationException;
 import com.openclassrooms.mddapi.response.AuthResponse;
+import com.openclassrooms.mddapi.response.ErrorResponse;
 import com.openclassrooms.mddapi.security.JWTService;
 import com.openclassrooms.mddapi.service.UserService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -50,6 +55,17 @@ public class AuthController {
 
         String accessToken = jwtService.generateTokensAndSetCookie(authentication, httpServletResponse);
         return ResponseEntity.ok(new AuthResponse(accessToken));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<Object> refreshToken(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        try {
+            Cookie[] cookies = httpServletRequest.getCookies();
+            String newAccessToken = jwtService.refreshToken(httpServletResponse, cookies);
+            return ResponseEntity.ok(new AuthResponse(newAccessToken));
+        } catch (JwtValidationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorResponse("Invalid token!"));
+        }
     }
 
 }
