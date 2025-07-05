@@ -1,7 +1,8 @@
 package com.openclassrooms.mddapi.security;
 
-import com.openclassrooms.mddapi.configuration.JwtProperties;
 import com.openclassrooms.mddapi.exception.JwtGenerationException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;
@@ -17,21 +18,23 @@ import java.time.temporal.ChronoUnit;
 public class JWTService {
 
     private final JwtEncoder jwtEncoder;
-    private final JwtProperties jwtProperties;
 
-    public JWTService(JwtEncoder jwtEncoder, JwtProperties jwtProperties) {
+    private static final int ACCESS_TOKEN_DURATION = 15 * 60; // 15 minutes
+    private static final int REFRESH_TOKEN_DURATION = 7 * 24 * 60 * 60; // 7 days
+    private static final ChronoUnit TOKEN_UNIT = ChronoUnit.SECONDS;
+
+    public JWTService(JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
-        this.jwtProperties = jwtProperties;
     }
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication, long duration, ChronoUnit unit, String tokenType) {
         Instant now = Instant.now();
         String subject = authentication.getName();
 
         JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
-                .expiresAt(now.plus(1, ChronoUnit.DAYS))
+                .expiresAt(now.plus(duration, unit))
                 .subject(subject)
                 .build();
 
@@ -42,8 +45,36 @@ public class JWTService {
             return this.jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
         }
         catch (Exception e) {
-            throw new JwtGenerationException("Token generation failed. Please try again later.");
+            throw new JwtGenerationException(tokenType + " token generation failed. Please try again later.");
         }
+    }
+
+    public String generateAccessToken(Authentication authentication) {
+        return generateToken(authentication, ACCESS_TOKEN_DURATION, TOKEN_UNIT, "Access");
+    }
+
+    public String generateRefreshToken(Authentication authentication) {
+        return generateToken(authentication, REFRESH_TOKEN_DURATION, TOKEN_UNIT, "Refresh");
+    }
+
+    private void addHttpOnlyCookie(HttpServletResponse httpServletResponse, String value) {
+        Cookie cookie = new Cookie("refresh_token", value);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        cookie.setPath("/");
+        cookie.setMaxAge(REFRESH_TOKEN_DURATION);
+        httpServletResponse.addCookie(cookie);
+    }
+
+    public String generateTokensAndSetCookie(Authentication authentication, HttpServletResponse httpServletResponse) {
+        String accessToken = generateAccessToken(authentication);
+        String refreshToken = generateRefreshToken(authentication);
+
+        // set refresh token as httpOnly cookie only
+        addHttpOnlyCookie(httpServletResponse, refreshToken);
+
+        // return access token to send in response body
+        return accessToken;
     }
 
 }
