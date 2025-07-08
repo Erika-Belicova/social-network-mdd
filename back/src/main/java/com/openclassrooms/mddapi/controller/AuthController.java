@@ -68,5 +68,12 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletResponse httpServletResponse) {
+        // clears the refresh token cookie on logout
+        jwtService.addHttpOnlyCookie(httpServletResponse, "", 0);
+        return ResponseEntity.noContent().build(); // HTTP 204 No Content
+    }
+
 }
 

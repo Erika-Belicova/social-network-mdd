@@ -2,10 +2,8 @@ package com.openclassrooms.mddapi.security;
 
 import com.openclassrooms.mddapi.exception.JwtGenerationException;
 import com.openclassrooms.mddapi.exception.JwtValidationException;
-import com.openclassrooms.mddapi.response.AuthResponse;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -63,12 +61,12 @@ public class JWTService {
         return generateToken(authentication, REFRESH_TOKEN_DURATION, TOKEN_UNIT, "Refresh");
     }
 
-    private void addHttpOnlyCookie(HttpServletResponse httpServletResponse, String value) {
+    public void addHttpOnlyCookie(HttpServletResponse httpServletResponse, String value, int durationSeconds) {
         Cookie cookie = new Cookie("refresh_token", value);
         cookie.setHttpOnly(true);
         cookie.setSecure(true);
         cookie.setPath("/");
-        cookie.setMaxAge(REFRESH_TOKEN_DURATION);
+        cookie.setMaxAge(durationSeconds);
         httpServletResponse.addCookie(cookie);
     }
 
@@ -77,7 +75,7 @@ public class JWTService {
         String refreshToken = generateRefreshToken(authentication);
 
         // set refresh token as httpOnly cookie only
-        addHttpOnlyCookie(httpServletResponse, refreshToken);
+        addHttpOnlyCookie(httpServletResponse, refreshToken, REFRESH_TOKEN_DURATION);
 
         // return access token to send in response body
         return accessToken;

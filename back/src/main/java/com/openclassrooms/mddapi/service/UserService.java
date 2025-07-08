@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.service;
 import com.openclassrooms.mddapi.dto.user.RegisterRequestDTO;
 import com.openclassrooms.mddapi.dto.user.UpdateUserDTO;
 import com.openclassrooms.mddapi.dto.user.UserDTO;
+import com.openclassrooms.mddapi.exception.DuplicateFieldValidationException;
 import com.openclassrooms.mddapi.exception.UserNotFoundException;
 import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.model.User;
@@ -28,6 +29,14 @@ public class UserService {
 
     @Transactional
     public void registerUser(RegisterRequestDTO registerRequestDTO) {
+        if (userRepository.existsByUsername(registerRequestDTO.getUsername())) {
+            throw new DuplicateFieldValidationException("Username is already in use");
+        }
+
+        if (userRepository.existsByEmail(registerRequestDTO.getEmail())) {
+            throw new DuplicateFieldValidationException("Email is already in use");
+        }
+
         User user = userMapper.toUserEntity(registerRequestDTO);
         user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
         userRepository.save(user);
@@ -36,7 +45,20 @@ public class UserService {
     @Transactional
     public UserDTO updateUser(Long userId, UpdateUserDTO updateUserDTO) {
         User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found!"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        // verify that username is unique
+        if (!existingUser.getUsername().equals(updateUserDTO.getUsername()) &&
+                userRepository.existsByUsername(updateUserDTO.getUsername())) {
+            throw new DuplicateFieldValidationException("Username is already in use");
+        }
+
+        // verify that email is unique
+        if (!existingUser.getEmail().equals(updateUserDTO.getEmail()) &&
+                userRepository.existsByEmail(updateUserDTO.getEmail())) {
+            throw new DuplicateFieldValidationException("Email is already in use");
+        }
+
         userMapper.updateUserEntityFromDTO(updateUserDTO, existingUser);
         existingUser.setPassword((passwordEncoder.encode(updateUserDTO.getPassword())));
         User savedUser = userRepository.save(existingUser);
@@ -47,7 +69,7 @@ public class UserService {
     public UserDTO getUserByCredential(String credential) {
         User user = userRepository.findByUsername(credential)
                 .or(() -> userRepository.findByEmail(credential))
-                .orElseThrow(() -> new UserNotFoundException("User not found!"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
         return userMapper.toUserDTO(user);
     }
 
