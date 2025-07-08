@@ -3,6 +3,8 @@ package com.openclassrooms.mddapi.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -49,6 +51,34 @@ public class GlobalExceptionHandler {
         logger.error("JwtGenerationException: ", exception);
         // 500 server error
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(JwtValidationException.class)
+    public ResponseEntity<ErrorResponse> handleJwtValidationException(JwtValidationException exception) {
+        logger.error("JwtValidationException: ", exception);
+        // 401 token validation failed
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException exception) {
+        logger.error("MethodArgumentNotValidException: ", exception);
+        // 400 input validation failed
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Validation failed"));
+    }
+
+    @ExceptionHandler(DuplicateFieldValidationException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateFieldValidationException(DuplicateFieldValidationException exception) {
+        logger.error("DuplicateFieldValidationException: ", exception);
+        // 400 validation error due to duplicate username or email
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleBadCredentials(BadCredentialsException exception) {
+        logger.error("BadCredentialsException: ", exception);
+        // 401 bad credentials provided
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorResponse("Bad credentials"));
     }
 
 }
