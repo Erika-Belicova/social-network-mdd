@@ -11,6 +11,11 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+/**
+ * Entity representing a topic.
+ * Contains title and description, linked posts, and subscribed users.
+ * Automatically tracks creation and update timestamps.
+ */
 @Entity
 @Table(name = "TOPICS")
 @Data

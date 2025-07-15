@@ -13,6 +13,12 @@ import com.openclassrooms.mddapi.response.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Global exception handler for the application.
+ * <p>
+ * Catches and handles various exceptions thrown throughout the application,
+ * returning appropriate HTTP status codes and error messages.
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -70,8 +76,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateFieldValidationException.class)
     public ResponseEntity<ErrorResponse> handleDuplicateFieldValidationException(DuplicateFieldValidationException exception) {
         logger.error("DuplicateFieldValidationException: ", exception);
-        // 400 validation error due to duplicate username or email
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(exception.getMessage()));
+        // 409 conflict error due to duplicate username or email
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(exception.getMessage()));
     }
 
     @ExceptionHandler(BadCredentialsException.class)

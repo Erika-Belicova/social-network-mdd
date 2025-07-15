@@ -14,6 +14,13 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Service responsible for generating, validating, and refreshing JWT tokens.
+ * <p>
+ * Manages access and refresh tokens, sets refresh tokens as HTTP-only cookies,
+ * and authenticates users based on refresh tokens.
+ * </p>
+ */
 @Service
 public class JWTService {
 

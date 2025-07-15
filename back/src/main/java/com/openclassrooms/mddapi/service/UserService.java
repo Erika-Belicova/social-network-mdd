@@ -16,6 +16,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Service layer managing user-related operations such as registration,
+ * profile updates, retrieving user data, and managing topic subscriptions.
+ */
 @Service
 public class UserService {
 

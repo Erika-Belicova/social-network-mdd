@@ -17,6 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Service layer for managing comments.
+ * <p>
+ * Handles operations such as saving a new comment and retrieving comments for a post.
+ * Interacts with repositories for users, posts, and comments, and uses a mapper to
+ * convert between entities and DTOs.
+ * </p>
+ */
 @Service
 public class CommentService {
 

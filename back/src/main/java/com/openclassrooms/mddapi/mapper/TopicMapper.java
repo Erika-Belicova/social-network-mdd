@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper component for converting between Topic entities and TopicDTOs.
+ */
 @Component
 public class TopicMapper {
 

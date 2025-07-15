@@ -7,6 +7,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Custom implementation of Spring Security's UserDetails,
+ * representing authenticated user information based on the application's User model.
+ * Currently does not support roles or authorities as this is an MVP implementation.
+ */
 public class CustomUserDetails implements UserDetails {
 
     private final String username;

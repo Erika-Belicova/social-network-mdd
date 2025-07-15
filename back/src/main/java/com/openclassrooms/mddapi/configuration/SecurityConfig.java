@@ -20,6 +20,15 @@ import org.springframework.security.config.Customizer;
 
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * Security configuration class that sets up JWT-based authentication,
+ * defines public and secured endpoints, and configures password encoding.
+ * - Disables CSRF protection for stateless REST APIs.
+ * - Configures stateless session management.
+ * - Permits access to authentication and Swagger-related endpoints.
+ * - Secures all other endpoints requiring authentication.
+ * - Provides beans for JWT encoding/decoding and password hashing.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

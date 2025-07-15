@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper component for converting between Post entities and their DTO representations.
+ */
 @Component
 public class PostMapper {
 

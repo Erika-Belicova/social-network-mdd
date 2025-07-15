@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Service layer handling business logic related to topics.
+ * Provides operations to retrieve topic data from the repository
+ * and map it to DTOs for external use.
+ */
 @Service
 public class TopicService {
 
