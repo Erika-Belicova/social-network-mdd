@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -55,12 +57,21 @@ public class PostService {
         return postMapper.toPostResponseDTO(post);
     }
 
-    @Transactional (readOnly = true)
-    public List<PostResponseDTO> getAllPostsForTopic(Long topicId) {
-        Topic topic = topicRepository.findById(topicId)
-                .orElseThrow(() -> new TopicNotFoundException("Topic not found!"));
-        List<Post> posts = postRepository.findByTopicId(topicId);
-        return postMapper.toPostResponseDTOList(posts);
+    @Transactional(readOnly = true)
+    public List<PostResponseDTO> getPostsForUserTopics(String username) {
+        User user = userRepository.findByUsernameOrEmail(username, username)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
+
+        // get the topics the user is subscribed to
+        Set<Topic> topics = user.getTopics();
+
+        // for each topic, get all posts and collect all posts into one list
+        List<Post> allPosts = topics.stream()
+                .flatMap(topic -> postRepository.findByTopicId(topic.getId()).stream())
+                .collect(Collectors.toList());
+
+        // map posts to PostResponseDTO
+        return postMapper.toPostResponseDTOList(allPosts);
     }
 
 }

@@ -4,9 +4,12 @@ import com.openclassrooms.mddapi.dto.user.RegisterRequestDTO;
 import com.openclassrooms.mddapi.dto.user.UpdateUserDTO;
 import com.openclassrooms.mddapi.dto.user.UserDTO;
 import com.openclassrooms.mddapi.exception.DuplicateFieldValidationException;
+import com.openclassrooms.mddapi.exception.TopicNotFoundException;
 import com.openclassrooms.mddapi.exception.UserNotFoundException;
 import com.openclassrooms.mddapi.mapper.UserMapper;
+import com.openclassrooms.mddapi.model.Topic;
 import com.openclassrooms.mddapi.model.User;
+import com.openclassrooms.mddapi.repository.TopicRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,12 +20,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final TopicRepository topicRepository;
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, UserMapper userMapper, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, TopicRepository topicRepository,
+                       UserMapper userMapper, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.topicRepository = topicRepository;
         this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
     }
@@ -43,8 +49,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO updateUser(Long userId, UpdateUserDTO updateUserDTO) {
-        User existingUser = userRepository.findById(userId)
+    public UserDTO updateUser(String username, UpdateUserDTO updateUserDTO) {
+        User existingUser = userRepository.findByUsernameOrEmail(username, username)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         // verify that username is unique
@@ -67,17 +73,33 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserDTO getUserByCredential(String credential) {
-        User user = userRepository.findByUsername(credential)
-                .or(() -> userRepository.findByEmail(credential))
+        User user = userRepository.findByUsernameOrEmail(credential, credential)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         return userMapper.toUserDTO(user);
     }
 
-    @Transactional(readOnly = true)
-    public UserDTO getUserById(Long id) {
-        User user = userRepository.findById(id)
+    @Transactional
+    public void subscribe(Long userId, Long topicId) {
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
-        return userMapper.toUserDTO(user);
+        Topic topic = topicRepository.findById(topicId)
+                .orElseThrow(() -> new TopicNotFoundException("Topic not found"));
+        if (!user.getTopics().contains(topic)) {
+            user.getTopics().add(topic);
+            userRepository.save(user);
+        }
+    }
+
+    @Transactional
+    public void unsubscribe(Long userId, Long topicId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        Topic topic = topicRepository.findById(topicId)
+                .orElseThrow(() -> new TopicNotFoundException("Topic not found"));
+        if (user.getTopics().contains(topic)) {
+            user.getTopics().remove(topic);
+            userRepository.save(user);
+        }
     }
 
 }

@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,9 +50,14 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginRequestDTO loginRequestDTO, HttpServletResponse httpServletResponse) {
-        // login with username or email
+        // determine whether to use username or email
+        String credential = StringUtils.isNotBlank(loginRequestDTO.getUsername())
+                ? loginRequestDTO.getUsername()
+                : loginRequestDTO.getEmail();
+
+        // login with the credential provided
         Authentication authentication = authenticationManager
-                .authenticate((new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(), loginRequestDTO.getPassword())));
+                .authenticate((new UsernamePasswordAuthenticationToken(credential, loginRequestDTO.getPassword())));
 
         String accessToken = jwtService.generateTokensAndSetCookie(authentication, httpServletResponse);
         return ResponseEntity.ok(new AuthResponse(accessToken));
