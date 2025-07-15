@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.mapper;
 
+import com.openclassrooms.mddapi.dto.topic.TopicDTO;
 import com.openclassrooms.mddapi.dto.user.RegisterRequestDTO;
 import com.openclassrooms.mddapi.dto.user.UpdateUserDTO;
 import com.openclassrooms.mddapi.dto.user.UserDTO;
@@ -8,6 +9,9 @@ import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UserMapper {
@@ -34,7 +38,17 @@ public class UserMapper {
 
     /** Convert User entity to UserDTO */
     public UserDTO toUserDTO(User user) {
-        return modelMapper.map(user, UserDTO.class);
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+
+        // map topics from entity to DTOs
+        if (user.getTopics() != null) {
+            List<TopicDTO> topicDTOs = user.getTopics()
+                    .stream()
+                    .map(topic -> modelMapper.map(topic, TopicDTO.class))
+                    .collect(Collectors.toList());
+            userDTO.setTopics(topicDTOs);
+        }
+        return userDTO;
     }
 
     /** Convert RegisterRequestDTO to User entity */

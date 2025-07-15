@@ -25,4 +25,8 @@ public class CommentResponseDTO {
     @JsonFormat(pattern = "yyyy/MM/dd")
     private LocalDateTime createdAt;
 
+    @JsonProperty("updated_at")
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    private LocalDateTime updatedAt;
+
 }
