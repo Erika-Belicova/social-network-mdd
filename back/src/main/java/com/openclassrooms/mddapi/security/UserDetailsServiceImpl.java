@@ -8,6 +8,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Service implementation for loading user-specific data.
+ * <p>
+ * Loads user details by username or email for authentication purposes.
+ * Throws UsernameNotFoundException if the user does not exist.
+ * </p>
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

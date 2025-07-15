@@ -6,6 +6,11 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+/**
+ * Entity representing a comment made by a user on a post.
+ * Contains the comment content, associated user and post,
+ * and tracks creation and update timestamps automatically.
+ */
 @Entity
 @Table(name = "COMMENTS")
 @Data

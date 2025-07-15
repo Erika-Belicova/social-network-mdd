@@ -20,6 +20,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Service layer for managing posts.
+ * <p>
+ * Provides operations to save posts, retrieve posts by ID, and fetch posts from
+ * the topics a user is subscribed to. Integrates with repositories for posts,
+ * users, and topics, and uses a mapper to convert between entities and DTOs.
+ * </p>
+ */
 @Service
 public class PostService {
 

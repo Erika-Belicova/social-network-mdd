@@ -13,6 +13,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper component for converting between User-related DTOs and User entities.
+ * <p>
+ * Handles conversion while skipping password mapping for security.
+ */
 @Component
 public class UserMapper {
 

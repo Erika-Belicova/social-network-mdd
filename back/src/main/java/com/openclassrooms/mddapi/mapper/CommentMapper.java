@@ -10,6 +10,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper component for converting between Comment entities and their DTO representations.
+ * Handles mapping of nested user and post details for response DTOs.
+ */
 @Component
 public class CommentMapper {
 

@@ -12,6 +12,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/**
+ * Configuration class for OpenAPI (Swagger) documentation.
+ * Defines API metadata, server details, and security schemes
+ * including JWT Bearer authentication for API access.
+ */
 @SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 @Configuration
 public class OpenAPIConfig {

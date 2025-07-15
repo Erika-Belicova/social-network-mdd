@@ -11,6 +11,11 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+/**
+ * Entity representing a user in the system.
+ * Contains user credentials, associated posts, comments, and subscribed topics.
+ * Tracks creation and update timestamps automatically.
+ */
 @Entity
 @Table(name = "USERS")
 @Data
