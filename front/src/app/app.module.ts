@@ -7,7 +7,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -17,4 +20,4 @@ import { HomeComponent } from './pages/home/home.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
