@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TopicListComponent {
 
+  subscribe(topicId: number) {
+    // get topic number
+
+    // call service
+  }
+
 }

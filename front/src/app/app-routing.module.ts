@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'posts', component: PostListComponent },
+  { path: 'posts/create', component: PostFormComponent },
   { path: 'posts/:id', component: PostDetailComponent },
   { path: 'topics', component: TopicListComponent },
   { path: 'me', component: MeComponent },
