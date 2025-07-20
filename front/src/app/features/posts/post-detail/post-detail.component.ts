@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class PostDetailComponent {
 
+  addComment() {
+    // call service to add comment to post
+  }
 }

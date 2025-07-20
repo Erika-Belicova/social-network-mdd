@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrl: './post-form.component.scss'
 })
 export class PostFormComponent {
+
+  constructor(private router: Router) { }
+
+  submitPost() {
+    // call service to submit post
+
+    // get post id
+    let postId = 1; // to test routing
+
+    // navigate to post detail
+    this.router.navigate(['/posts', postId]);
+  }
 
 }

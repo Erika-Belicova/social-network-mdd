@@ -1,1 +1,15 @@
-<p>navbar works!</p>
+<ng-container *ngIf="!isHomepage()">
+  <nav class="navbar" *ngIf="isPublicRoute()">
+    <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
+  </nav>
+
+  <nav class="navbar" *ngIf="!isPublicRoute()">
+    <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
+    <button (click)="logout()">Se déconnecter</button>
+    <button [routerLink]="['/posts']">Articles</button>
+    <button [routerLink]="['/topics']">Thèmes</button>
+    <a [routerLink]="['/me']" class="profile-button">
+      <img class="navbar-img" src="assets/profile.png" alt="Profile" />
+    </a>
+  </nav>
+</ng-container>
