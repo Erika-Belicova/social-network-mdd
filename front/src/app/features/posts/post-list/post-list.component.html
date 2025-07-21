@@ -1,4 +1,12 @@
-<p>post-list works!</p>
-<button [routerLink]="['/posts/create']">Créer un article</button>
-<button (click)="orderBy()">Trier par ↓</button>
-<button (click)="goToPost(1)">Article Detail</button>
+<div class="center">
+  <div class="buttons-top">
+    <button mat-raised-button color="primary" [routerLink]="['/posts/create']">Créer un article</button>
+    <button mat-button (click)="orderBy()">Trier par ↓</button>
+  </div>
+  <div class="two-columns">
+    <button mat-button (click)="goToPost(1)">Article Detail</button>
+    <button mat-button (click)="goToPost(2)">Article Detail</button>
+    <button mat-button (click)="goToPost(3)">Article Detail</button>
+    <button mat-button (click)="goToPost(4)">Article Detail</button>
+  </div>
+</div>

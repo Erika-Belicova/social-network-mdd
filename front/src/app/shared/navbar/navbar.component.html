@@ -5,11 +5,13 @@
 
   <nav class="navbar" *ngIf="!isPublicRoute()">
     <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
-    <button (click)="logout()">Se déconnecter</button>
-    <button [routerLink]="['/posts']">Articles</button>
-    <button [routerLink]="['/topics']">Thèmes</button>
-    <a [routerLink]="['/me']" class="profile-button">
-      <img class="navbar-img" src="assets/profile.png" alt="Profile" />
-    </a>
+    <div class="navbar-buttons">
+      <button mat-button class="button-red" (click)="logout()">Se déconnecter</button>
+      <button mat-button class="button-purple" [routerLink]="['/posts']">Articles</button>
+      <button mat-button [routerLink]="['/topics']">Thèmes</button>
+      <a [routerLink]="['/me']" class="profile-button">
+        <img class="navbar-img" src="assets/profile.png" alt="Profile" />
+      </a>
+    </div>
   </nav>
 </ng-container>

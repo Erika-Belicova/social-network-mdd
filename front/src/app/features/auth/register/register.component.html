@@ -1,3 +1,15 @@
-<p>register works!</p>
-<button [routerLink]="['/']">←</button>
-<button (click)="register()">S'inscrire</button>
+<button mat-icon-button [routerLink]="['/']">←</button>
+<div class="center">
+  <h4>Inscription</h4>
+  <form>
+    <label for="username">Nom d’utilisateur</label><br>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="email">Adresse e-mail</label><br>
+    <input type="text" id="email" name="email"><br><br>
+    <label for="password">Mot de passe</label><br>
+    <input type="text" id="password" name="password"><br><br>
+    <div class="center">
+      <button mat-raised-button color="primary" type="submit" value="Submit" (click)="register()">S'inscrire</button>
+    </div>
+  </form>
+</div>
