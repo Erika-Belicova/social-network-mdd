@@ -1,0 +1,25 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 60px;
+    border-bottom: 1px solid #000;
+}
+
+.navbar-buttons {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    max-width: 50%;
+}
+
+.button-red {
+    color: rgb(150, 16, 16) !important;
+}
+
+.button-purple {
+    color: rgb(171, 34, 189) !important;
+}

@@ -5,3 +5,10 @@
   align-items: center;
   flex-direction: column;
 }
+
+.button-row {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 100px;
+  align-items: center;
+}
