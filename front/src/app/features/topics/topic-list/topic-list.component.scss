@@ -1,0 +1,40 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card {
+  background-color: #EEEEEE;
+  padding: 20px;
+  border-radius: 10px;
+  width: calc(50% - 2rem);
+  box-sizing: border-box;
+}
+
+.container-padding {
+  margin: 40px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  margin: 20px auto;
+}
+
+/* mobile: 1 column */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    margin: 10px;
+  }
+
+  .cards-container {
+    gap: 0px !important;
+    margin: 0px auto;
+  }
+}

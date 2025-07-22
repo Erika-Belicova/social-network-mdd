@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './post-detail.component.scss'
 })
 export class PostDetailComponent {
+  newComment: string = '';
 
   addComment() {
     // call service to add comment to post

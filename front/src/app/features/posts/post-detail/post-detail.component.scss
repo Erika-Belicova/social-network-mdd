@@ -1,0 +1,88 @@
+.left {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+  margin: 20px 60px 20px 60px;
+  max-width: 80vw;
+}
+
+.post-data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+h2 {
+  margin: 8px 0px 0px 0px !important;
+  font-weight: bold;
+}
+
+.comment-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.username {
+  min-width: 10%;
+  margin: 0;
+}
+
+.comment-box {
+  width: 80%;
+  background-color: #EEEEEE;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  resize: none;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.comments {
+  padding: 20px 0px 20px 0px;
+}
+
+.comment-input {
+  width: 70vw;
+}
+
+.comment-input-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.comment-input-field {
+  flex: 1;
+}
+
+.comment-input-field .mat-form-field-wrapper {
+  width: 100%;
+}
+
+button {
+  flex-shrink: 0;
+}
+
+.button-wrapper {
+  width: 68px;
+  height: 68px;
+  margin-bottom: 16px;
+}
+
+.button-wrapper .comment-button {
+  width: 44px;
+  height: 44px;
+  filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
+}

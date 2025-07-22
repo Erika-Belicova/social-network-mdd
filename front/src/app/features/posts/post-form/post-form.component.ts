@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrl: './post-form.component.scss'
 })
 export class PostFormComponent {
+  topics = [];
+  selectedTopic: number | null = null;
 
   constructor(private router: Router) { }
 

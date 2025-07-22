@@ -1,0 +1,12 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+mat-form-field {
+    display: block;
+    margin-bottom: 16px;
+    width: 300px;
+}

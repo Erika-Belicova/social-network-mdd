@@ -1,3 +1,70 @@
-<p>me works!</p>
-<button (click)="updateUser()">Sauvegarder</button>
-<button (click)="unsubscribe(1)">Se désabonner</button>
+<div class="center">
+  <h2>Profil utilisateur</h2>
+  <form>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput id="username" name="username" placeholder="Username" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput id="email" name="email" placeholder="email@email.fr" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput id="password" name="password" placeholder="Mot de passe" type="password" />
+    </mat-form-field>
+
+    <div class="center">
+      <button mat-raised-button color="primary" type="submit" value="Submit" (click)="updateUser()">Sauvegarder</button>
+    </div>
+  </form>
+</div>
+<hr />
+<div class="center">
+  <h2>Abonnements</h2>
+  <div class="container-padding cards-container">
+    <div class="card">
+      <h3>Titre du thème</h3>
+      <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+      <div class="center">
+        <button mat-raised-button color="primary" (click)="unsubscribe(1)">S'abonner</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Titre du thème</h3>
+      <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+      <div class="center">
+        <button mat-raised-button color="primary" (click)="unsubscribe(2)">S'abonner</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Titre du thème</h3>
+      <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+      <div class="center">
+        <button mat-raised-button color="primary" (click)="unsubscribe(3)">S'abonner</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Titre du thème</h3>
+      <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+      <div class="center">
+        <button mat-raised-button color="primary" (click)="unsubscribe(4)">S'abonner</button>
+      </div>
+    </div>
+  </div>
+</div>

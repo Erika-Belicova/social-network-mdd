@@ -7,9 +7,12 @@
     <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
     <div class="navbar-buttons">
       <button mat-button class="button-red" (click)="logout()">Se déconnecter</button>
-      <button mat-button class="button-purple" [routerLink]="['/posts']">Articles</button>
-      <button mat-button [routerLink]="['/topics']">Thèmes</button>
-      <a [routerLink]="['/me']" class="profile-button">
+      <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['/posts']">Articles</button>
+      <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['/topics']">Thèmes</button>
+      <a [routerLink]="['/me']" routerLinkActive="active-profile" [routerLinkActiveOptions]="{ exact: true }"
+        class="profile-button">
         <img class="navbar-img" src="assets/profile.png" alt="Profile" />
       </a>
     </div>
