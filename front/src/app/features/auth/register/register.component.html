@@ -3,11 +3,19 @@
   <h4>Inscription</h4>
   <form>
     <label for="username">Nom d’utilisateur</label><br>
-    <input type="text" id="username" name="username"><br><br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput type="text" id="username" name="username" />
+    </mat-form-field>
+
     <label for="email">Adresse e-mail</label><br>
-    <input type="text" id="email" name="email"><br><br>
-    <label for="password">Mot de passe</label><br>
-    <input type="text" id="password" name="password"><br><br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput type="text" id="email" name="email" />
+    </mat-form-field>
+
+    <label for="password">Mot de passe</label>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput id="password" name="password" type="password" />
+    </mat-form-field>
     <div class="center">
       <button mat-raised-button color="primary" type="submit" value="Submit" (click)="register()">S'inscrire</button>
     </div>

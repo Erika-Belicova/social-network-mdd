@@ -3,10 +3,54 @@
     <button mat-raised-button color="primary" [routerLink]="['/posts/create']">Créer un article</button>
     <button mat-button (click)="orderBy()">Trier par ↓</button>
   </div>
-  <div class="two-columns">
-    <button mat-button (click)="goToPost(1)">Article Detail</button>
-    <button mat-button (click)="goToPost(2)">Article Detail</button>
-    <button mat-button (click)="goToPost(3)">Article Detail</button>
-    <button mat-button (click)="goToPost(4)">Article Detail</button>
+  <div class="container-padding cards-container">
+    <a class="card" (click)="goToPost(1)">
+      <h3>Titre de l’article</h3>
+      <div class="post-data">
+        <h4>Date</h4>
+        <h4>Auteur</h4>
+      </div>
+      <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+    </a>
+    <a class="card" (click)="goToPost(2)">
+      <h3>Titre de l’article</h3>
+      <div class="post-data">
+        <h4>Date</h4>
+        <h4>Auteur</h4>
+      </div>
+      <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+    </a>
+    <a class="card" (click)="goToPost(3)">
+      <h3>Titre de l’article</h3>
+      <div class="post-data">
+        <h4>Date</h4>
+        <h4>Auteur</h4>
+      </div>
+      <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+    </a>
+    <a class="card" (click)="goToPost(4)">
+      <h3>Titre de l’article</h3>
+      <div class="post-data">
+        <h4>Date</h4>
+        <h4>Auteur</h4>
+      </div>
+      <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
+        nibh, consectetur
+        vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+        eget
+        sagittis ut, consectetur ac sem.</p>
+    </a>
   </div>
 </div>

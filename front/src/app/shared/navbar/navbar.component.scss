@@ -1,25 +1,30 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    height: 60px;
-    border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  height: 60px;
+  border-bottom: 1px solid #000;
 }
 
 .navbar-buttons {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    gap: 1rem;
-    flex: 1;
-    max-width: 50%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  max-width: 50%;
 }
 
 .button-red {
-    color: rgb(150, 16, 16) !important;
+  color: rgb(150, 16, 16) !important;
+  font-size: small;
 }
 
 .button-purple {
-    color: rgb(171, 34, 189) !important;
+  color: rgb(108, 92, 207) !important;
+}
+
+.profile-button.active-profile img {
+  filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
 }

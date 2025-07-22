@@ -1,0 +1,50 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 16px;
+  width: 300px;
+}
+
+hr {
+  margin: 40px 0px;
+}
+
+.container-padding {
+  margin: 40px;
+}
+
+.card {
+  background-color: #EEEEEE;
+  padding: 20px;
+  border-radius: 10px;
+  width: calc(50% - 2rem);
+  box-sizing: border-box;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  margin: 20px auto;
+}
+
+/* mobile: 1 column */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    margin: 10px;
+  }
+
+  .cards-container {
+    gap: 0px !important;
+    margin: 0px auto;
+  }
+}

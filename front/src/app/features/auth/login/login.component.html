@@ -1,11 +1,17 @@
 <button mat-icon-button [routerLink]="['/']">←</button>
 <div class="center">
-  <h4>Se connecter</h4>
+  <h1>Se connecter</h1>
   <form>
     <label for="emailOrUsername">E-mail ou nom d’utilisateur</label><br>
-    <input type="text" id="emailOrUsername" name="emailOrUsername"><br><br>
-    <label for="password">Mot de passe</label><br>
-    <input type="text" id="password" name="password"><br><br>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput type="text" id="emailOrUsername" name="emailOrUsername" />
+    </mat-form-field>
+
+    <label for="password">Mot de passe</label>
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput id="password" name="password" type="password" />
+    </mat-form-field>
+
     <div class="center">
       <button mat-raised-button color="primary" type="submit" value="Submit" (click)="login()">Se connecter</button>
     </div>

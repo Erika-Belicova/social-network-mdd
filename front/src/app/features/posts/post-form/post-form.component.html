@@ -1,3 +1,26 @@
-<p>post-form works!</p>
-<button [routerLink]="['/posts']">←</button>
-<button (click)="submitPost()">Créer</button>
+<button mat-icon-button [routerLink]="['/']">←</button>
+<div class="center">
+  <h1>Créer un nouvel article</h1>
+  <form>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Sélectionner un thème</mat-label>
+      <mat-select id="topic" name="topic" [(ngModel)]="selectedTopic">
+        <mat-option *ngFor="let topic of topics" [value]="topic">
+          {{ topic }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <input matInput id="title" name="title" placeholder="Titre de l’article" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <textarea matInput id="content" name="content" rows="5" placeholder="Contenu de l’article"></textarea>
+    </mat-form-field>
+
+    <div class="center">
+      <button mat-raised-button color="primary" type="submit" value="Submit" (click)="submitPost()">Créer</button>
+    </div>
+  </form>
+</div>
