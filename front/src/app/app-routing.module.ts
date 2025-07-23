@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { LoginComponent } from './features/auth/login/login.component';
-import { RegisterComponent } from './features/auth/register/register.component';
-import { MeComponent } from './features/user/me/me.component';
-import { PostListComponent } from './features/posts/post-list/post-list.component';
-import { PostDetailComponent } from './features/posts/post-detail/post-detail.component';
-import { PostFormComponent } from './features/posts/post-form/post-form.component';
-import { TopicListComponent } from './features/topics/topic-list/topic-list.component';
+import { HomeComponent } from './pages/components/home/home.component';
+import { NotFoundComponent } from './pages/components/not-found/not-found.component';
+import { LoginComponent } from './features/auth/components/login/login.component';
+import { RegisterComponent } from './features/auth/components/register/register.component';
+import { MeComponent } from './features/user/components/me/me.component';
+import { PostListComponent } from './features/posts/components/post-list/post-list.component';
+import { PostDetailComponent } from './features/posts/components/post-detail/post-detail.component';
+import { PostFormComponent } from './features/posts/components/post-form/post-form.component';
+import { TopicListComponent } from './features/topics/components/topic-list/topic-list.component';
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
