@@ -22,7 +22,7 @@ import { PostDetailComponent } from './features/posts/components/post-detail/pos
 import { PostFormComponent } from './features/posts/components/post-form/post-form.component';
 import { CommentsComponent } from './features/posts/components/comments/comments.component';
 import { TopicListComponent } from './features/topics/components/topic-list/topic-list.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
