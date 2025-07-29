@@ -6,9 +6,52 @@
   flex-direction: column;
 }
 
+#logo {
+  min-width: 280px;
+  min-height: 200px;
+  max-width: 40vw;
+  max-height: 30vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
 .button-row {
   display: flex;
-  justify-content: space-evenly;
-  gap: 100px;
+  justify-content: center;
   align-items: center;
+  gap: 100px;
+  flex-wrap: wrap;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .center {
+    justify-content: flex-start;
+    padding-top: 10vh;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .button-row {
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .button-row button {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .button-outline-black {
+    padding: 20px 24px;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
 }

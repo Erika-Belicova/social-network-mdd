@@ -1,23 +1,26 @@
-<button mat-icon-button [routerLink]="['/']">←</button>
+<button mat-icon-button [routerLink]="['/']" aria-label="Back" class="arrow-button">
+  <img src="assets/arrow-left-icon.svg" alt="Back" />
+</button>
+
+<!-- logo for mobile -->
+<img src="/assets/logo_p6.png" alt="logo" id="logo" class="hidden" />
+
 <div class="center">
   <h4>Inscription</h4>
-  <form>
-    <label for="username">Nom d’utilisateur</label><br>
-    <mat-form-field appearance="outline" class="full-width">
-      <input matInput type="text" id="username" name="username" />
-    </mat-form-field>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <label for="username">Nom d’utilisateur</label>
+    <input id="username" formControlName="username" matInput class="custom-input" type="text" />
 
-    <label for="email">Adresse e-mail</label><br>
-    <mat-form-field appearance="outline" class="full-width">
-      <input matInput type="text" id="email" name="email" />
-    </mat-form-field>
+    <label for="email">Adresse e-mail</label>
+    <input id="email" formControlName="email" matInput class="custom-input" type="email" />
 
     <label for="password">Mot de passe</label>
-    <mat-form-field appearance="outline" class="full-width">
-      <input matInput id="password" name="password" type="password" />
-    </mat-form-field>
+    <input id="password" formControlName="password" matInput class="custom-input" type="password" />
+
     <div class="center">
-      <button mat-raised-button color="primary" type="submit" value="Submit" (click)="register()">S'inscrire</button>
+      <button mat-button type="submit" class="purple-button">
+        S'inscrire
+      </button>
     </div>
   </form>
 </div>
