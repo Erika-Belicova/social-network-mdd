@@ -1,19 +1,23 @@
-<button mat-icon-button [routerLink]="['/']">←</button>
+<button mat-icon-button [routerLink]="['/']" aria-label="Back" class="arrow-button">
+  <img src="assets/arrow-left-icon.svg" alt="Back" />
+</button>
+
+<!-- logo for mobile -->
+<img src="/assets/logo_p6.png" alt="logo" id="logo" class="hidden" />
+
 <div class="center">
-  <h1>Se connecter</h1>
-  <form>
-    <label for="emailOrUsername">E-mail ou nom d’utilisateur</label><br>
-    <mat-form-field appearance="outline" class="full-width">
-      <input matInput type="text" id="emailOrUsername" name="emailOrUsername" />
-    </mat-form-field>
+  <h4>Se connecter</h4>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <label for="emailOrUsername">E-mail ou nom d’utilisateur</label>
+    <input id="emailOrUsername" formControlName="emailOrUsername" matInput class="custom-input" type="text" />
 
     <label for="password">Mot de passe</label>
-    <mat-form-field appearance="outline" class="full-width">
-      <input matInput id="password" name="password" type="password" />
-    </mat-form-field>
+    <input id="password" formControlName="password" matInput class="custom-input" type="password" />
 
     <div class="center">
-      <button mat-raised-button color="primary" type="submit" value="Submit" (click)="login()">Se connecter</button>
+      <button mat-button type="submit" class="purple-button">
+        Se connecter
+      </button>
     </div>
   </form>
 </div>

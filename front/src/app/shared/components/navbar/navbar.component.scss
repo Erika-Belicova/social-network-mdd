@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
+  margin-bottom: 0px;
   height: 60px;
   border-bottom: 1px solid #000;
 }
@@ -27,4 +28,10 @@
 
 .profile-button.active-profile img {
   filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
+}
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
 }

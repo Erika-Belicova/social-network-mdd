@@ -1,5 +1,6 @@
 <ng-container *ngIf="!isHomepage()">
-  <nav class="navbar" *ngIf="isPublicRoute()">
+  <!-- hide navbar on mobile for public routes -->
+  <nav class="navbar" *ngIf="isPublicRoute()" [class.hide-on-mobile]="isPublicRoute()">
     <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
   </nav>
 
