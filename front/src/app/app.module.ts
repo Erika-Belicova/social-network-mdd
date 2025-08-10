@@ -10,6 +10,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/components/home/home.component';
@@ -24,6 +25,7 @@ import { PostFormComponent } from './features/posts/components/post-form/post-fo
 import { CommentsComponent } from './features/posts/components/comments/comments.component';
 import { TopicListComponent } from './features/topics/components/topic-list/topic-list.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { AuthInterceptor } from './features/auth/services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,14 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     MatIconModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
