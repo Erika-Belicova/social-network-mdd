@@ -84,14 +84,9 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginRequestDTO loginRequestDTO, HttpServletResponse httpServletResponse) {
-        // determine whether to use username or email
-        String credential = StringUtils.isNotBlank(loginRequestDTO.getUsername())
-                ? loginRequestDTO.getUsername()
-                : loginRequestDTO.getEmail();
-
         // login with the credential provided
         Authentication authentication = authenticationManager
-                .authenticate((new UsernamePasswordAuthenticationToken(credential, loginRequestDTO.getPassword())));
+                .authenticate((new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsernameOrEmail(), loginRequestDTO.getPassword())));
 
         String accessToken = jwtService.generateTokensAndSetCookie(authentication, httpServletResponse);
         return ResponseEntity.ok(new AuthResponse(accessToken));
