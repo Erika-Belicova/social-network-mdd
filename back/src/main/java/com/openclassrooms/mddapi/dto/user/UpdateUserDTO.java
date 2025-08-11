@@ -21,10 +21,6 @@ public class UpdateUserDTO {
     @Schema(description = "Updated email address of the user", example = "john@smith1.com")
     private String email;
 
-    @NotBlank(message = "Name cannot be blank")
-    @Schema(description = "Updated full name of the user", example = "John Adam Smith")
-    private String name;
-
     @NotBlank(message = "Password cannot be blank")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$",
             message = "Password must be minimum 8 characters, include uppercase, lowercase, digit, and special character")

@@ -21,10 +21,6 @@ public class RegisterRequestDTO {
     @Schema(description = "Email address of the new user", example = "john@smith.com")
     private String email;
 
-    @NotBlank(message = "Name cannot be blank")
-    @Schema(description = "Full name of the new user", example = "John Smith")
-    private String name;
-
     @NotBlank(message = "Password cannot be blank")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$",
             message = "Password must be minimum 8 characters, include uppercase, lowercase, digit, and special character")
