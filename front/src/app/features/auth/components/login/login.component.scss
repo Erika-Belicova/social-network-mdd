@@ -11,6 +11,18 @@ mat-form-field {
   margin-bottom: 8px;
 }
 
+.mat-error {
+  font-size: 0.75rem;
+  color: #f44336;
+  display: block;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  width: 240px;
+  text-align: left;
+  white-space: normal;
+  margin: -12px 0 16px 0;
+  word-break: break-word;
+}
+
 .purple-button {
   background-color: #7763C5;
   color: white;

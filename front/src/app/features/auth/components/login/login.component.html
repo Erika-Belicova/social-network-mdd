@@ -7,12 +7,18 @@
 
 <div class="center">
   <h4>Se connecter</h4>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <form #loginFormRef [formGroup]="loginForm" (ngSubmit)="login()">
     <label for="emailOrUsername">E-mail ou nom d’utilisateur</label>
     <input id="emailOrUsername" formControlName="emailOrUsername" matInput class="custom-input" type="text" />
+    <div *ngIf="submitted && loginForm.get('emailOrUsername')?.invalid" class="mat-error">
+      Ce champ est requis.
+    </div>
 
     <label for="password">Mot de passe</label>
     <input id="password" formControlName="password" matInput class="custom-input" type="password" />
+    <div *ngIf="submitted && loginForm.get('password')?.invalid" class="mat-error">
+      Le mot de passe est requis.
+    </div>
 
     <div class="center">
       <button mat-button type="submit" class="purple-button">

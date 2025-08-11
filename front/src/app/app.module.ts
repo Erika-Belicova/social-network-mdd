@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -54,6 +55,7 @@ import { AuthInterceptor } from './features/auth/services/auth.interceptor';
     MatSelectModule,
     MatOptionModule,
     MatIconModule,
+    MatSnackBarModule,
     ReactiveFormsModule
   ],
   providers: [

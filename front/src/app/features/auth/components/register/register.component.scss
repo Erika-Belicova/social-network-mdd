@@ -45,6 +45,18 @@ form {
   margin-top: 1rem;
 }
 
+.mat-error {
+  font-size: 0.75rem;
+  color: #f44336;
+  display: block;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  width: 240px;
+  text-align: left;
+  white-space: normal;
+  margin: -12px 0 16px 0;
+  word-break: break-word;
+}
+
 .arrow-button {
   border: none;
   background: transparent;
