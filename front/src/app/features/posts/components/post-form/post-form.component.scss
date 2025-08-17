@@ -10,3 +10,33 @@ mat-form-field {
     margin-bottom: 16px;
     width: 300px;
 }
+
+.page-container {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.arrow-button {
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    margin: 0.75rem 2rem;
+}
+
+.arrow-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.arrow-button img {
+    width: 40px;
+    height: 40px;
+    margin: 0.75rem 2rem;
+    display: block;
+    pointer-events: none;
+}

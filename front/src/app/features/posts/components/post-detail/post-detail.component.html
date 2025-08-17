@@ -1,41 +1,45 @@
-<div class="post-header">
-  <button mat-icon-button [routerLink]="['/posts']">←</button>
-  <h2>Titre de l’article sélectionné</h2>
-</div>
-<div class="left">
-  <div class="post-data">
-    <h4>Date</h4>
-    <h4>Auteur</h4>
-    <h4>Théme</h4>
-  </div>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat nibh,
-    consectetur
-    vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
-    eget
-    sagittis ut, consectetur ac sem. Sed sed facilisis lacus. In laoreet arcu nulla, at lacinia ex ullamcorper ut.
-    Fusce
-    a
-    sem a elit ullamcorper laoreet. Sed elit augue, commodo non blandit ut, pellentesque et felis. Aenean aliquam,
-    lectus
-    quis egestas sollicitudin, ex magna vulputate enim, non sollicitudin orci nulla vitae eros.
-  </p>
-</div>
-<hr />
-<div class="left comments">
-  <h4>Commentaires</h4>
-  <div class="comment-row">
-    <p class="username">username</p>
-    <textarea class="comment-box" rows="3" readonly>contenu du commentaire</textarea>
-  </div>
-  <div class="comment-input-wrapper">
-    <mat-form-field appearance="outline" class="comment-input-field">
-      <textarea matInput id="email" name="addComment" placeholder="Écrivez ici votre commentaire"
-        [(ngModel)]="newComment" rows="3" class="comment-input"></textarea>
-    </mat-form-field>
-    <button mat-icon-button class="button-wrapper" (click)="addComment()">
-      <img class="comment-button" src="assets/paper_plane.svg" alt="Add comment" />
+<div class="page-container">
+  <div class="post-header">
+    <button mat-icon-button [routerLink]="['/posts']" aria-label="Back" class="arrow-button">
+      <img src="assets/arrow-left-icon.svg" alt="Back" />
     </button>
+    <h2>Titre de l’article sélectionné</h2>
+  </div>
+  <div class="left">
+    <div class="post-data">
+      <h4>Date</h4>
+      <h4>Auteur</h4>
+      <h4>Théme</h4>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat nibh,
+      consectetur
+      vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex, viverra
+      eget
+      sagittis ut, consectetur ac sem. Sed sed facilisis lacus. In laoreet arcu nulla, at lacinia ex ullamcorper ut.
+      Fusce
+      a
+      sem a elit ullamcorper laoreet. Sed elit augue, commodo non blandit ut, pellentesque et felis. Aenean aliquam,
+      lectus
+      quis egestas sollicitudin, ex magna vulputate enim, non sollicitudin orci nulla vitae eros.
+    </p>
+  </div>
+  <hr />
+  <div class="left comments">
+    <h4>Commentaires</h4>
+    <div class="comment-row">
+      <p class="username">username</p>
+      <textarea class="comment-box" rows="3" readonly>contenu du commentaire</textarea>
+    </div>
+    <div class="comment-input-wrapper">
+      <mat-form-field appearance="outline" class="comment-input-field">
+        <textarea matInput id="email" name="addComment" placeholder="Écrivez ici votre commentaire"
+          [(ngModel)]="newComment" rows="3" class="comment-input"></textarea>
+      </mat-form-field>
+      <button mat-icon-button class="button-wrapper" (click)="addComment()">
+        <img class="comment-button" src="assets/paper_plane.svg" alt="Add comment" />
+      </button>
 
+    </div>
   </div>
 </div>
