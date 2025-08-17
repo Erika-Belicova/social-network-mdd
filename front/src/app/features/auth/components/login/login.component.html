@@ -8,10 +8,10 @@
 <div class="center">
   <h4>Se connecter</h4>
   <form #loginFormRef [formGroup]="loginForm" (ngSubmit)="login()">
-    <label for="emailOrUsername">E-mail ou nom d’utilisateur</label>
-    <input id="emailOrUsername" formControlName="emailOrUsername" matInput class="custom-input" type="text" />
-    <div *ngIf="submitted && loginForm.get('emailOrUsername')?.invalid" class="mat-error">
-      Ce champ est requis.
+    <label for="usernameOrEmail">E-mail ou nom d’utilisateur</label>
+    <input id="usernameOrEmail" formControlName="usernameOrEmail" matInput class="custom-input" type="text" />
+    <div *ngIf="submitted && loginForm.get('usernameOrEmail')?.invalid" class="mat-error">
+      L’adresse e-mail ou le nom d’utilisateur est requis.
     </div>
 
     <label for="password">Mot de passe</label>

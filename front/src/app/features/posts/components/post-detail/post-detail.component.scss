@@ -86,3 +86,33 @@ button {
   height: 44px;
   filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
 }
+
+.page-container {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.arrow-button {
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  margin: 0.75rem 2rem;
+}
+
+.arrow-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.arrow-button img {
+  width: 40px;
+  height: 40px;
+  margin: 0.75rem 2rem;
+  display: block;
+  pointer-events: none;
+}
