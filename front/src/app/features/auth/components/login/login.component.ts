@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } fr
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { TokenService } from '../../services/token.service';
+import { TokenService } from '../../../../core/services/token.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

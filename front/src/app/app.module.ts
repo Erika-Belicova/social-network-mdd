@@ -26,7 +26,7 @@ import { PostFormComponent } from './features/posts/components/post-form/post-fo
 import { CommentsComponent } from './features/posts/components/comments/comments.component';
 import { TopicListComponent } from './features/topics/components/topic-list/topic-list.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { AuthInterceptor } from './features/auth/services/auth.interceptor';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [

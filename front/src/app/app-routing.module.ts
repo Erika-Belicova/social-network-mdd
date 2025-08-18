@@ -10,17 +10,22 @@ import { PostDetailComponent } from './features/posts/components/post-detail/pos
 import { PostFormComponent } from './features/posts/components/post-form/post-form.component';
 import { TopicListComponent } from './features/topics/components/topic-list/topic-list.component';
 
-// consider a guard combined with canLoad / canActivate route option
-// to manage unauthenticated user to access private routes
+import { authGuard } from './core/guards/auth.guard'; 
+
 const routes: Routes = [
+  // public routes
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'posts', component: PostListComponent },
-  { path: 'posts/create', component: PostFormComponent },
-  { path: 'posts/:id', component: PostDetailComponent },
-  { path: 'topics', component: TopicListComponent },
-  { path: 'me', component: MeComponent },
+
+  // protected routes
+  { path: 'posts', component: PostListComponent, canActivate: [authGuard] },
+  { path: 'posts/create', component: PostFormComponent, canActivate: [authGuard] },
+  { path: 'posts/:id', component: PostDetailComponent, canActivate: [authGuard] },
+  { path: 'topics', component: TopicListComponent, canActivate: [authGuard] },
+  { path: 'me', component: MeComponent, canActivate: [authGuard] },
+
+  // route not found
   { path: '**', component: NotFoundComponent }
 ];
 
