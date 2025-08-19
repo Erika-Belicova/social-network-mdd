@@ -1,80 +1,42 @@
 <div class="page-container">
   <div class="center">
     <h2>Profil utilisateur</h2>
-    <form>
-      <mat-form-field appearance="outline" class="full-width">
-        <input matInput id="username" name="username" placeholder="Username" />
-      </mat-form-field>
+    <form [formGroup]="profileForm" (ngSubmit)="updateUser()">
 
-      <mat-form-field appearance="outline" class="full-width">
-        <input matInput id="email" name="email" placeholder="email@email.fr" />
-      </mat-form-field>
+      <label for="username">Nom d’utilisateur</label>
+      <input id="username" formControlName="username" class="custom-input" type="text" />
+      <div *ngIf="profileForm.get('username')?.invalid && profileForm.get('username')?.touched" class="error">
+        Le nom d’utilisateur est requis.
+      </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <input matInput id="password" name="password" placeholder="Mot de passe" type="password" />
-      </mat-form-field>
+      <label for="email">E-mail</label>
+      <input id="email" formControlName="email" class="custom-input" type="email" />
+      <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="error">
+        Un e-mail valide est requis.
+      </div>
+
+      <label for="password">Mot de passe</label>
+      <input id="password" formControlName="password" class="custom-input" type="password" />
+      <div *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched" class="error">
+        Mot de passe invalide.
+      </div>
 
       <div class="center">
-        <button mat-raised-button color="primary" type="submit" value="Submit"
-          (click)="updateUser()">Sauvegarder</button>
+        <button type="submit" class="purple-button" [disabled]="profileForm.invalid">
+          Sauvegarder
+        </button>
       </div>
     </form>
   </div>
   <hr />
   <div class="center">
     <h2>Abonnements</h2>
-    <div class="container-padding cards-container">
-      <div class="card">
-        <h3>Titre du thème</h3>
-        <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi
-          erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
-        <div class="center">
-          <button mat-raised-button color="primary" (click)="unsubscribe(1)">S'abonner</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Titre du thème</h3>
-        <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi
-          erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
-        <div class="center">
-          <button mat-raised-button color="primary" (click)="unsubscribe(2)">S'abonner</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Titre du thème</h3>
-        <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi
-          erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
-        <div class="center">
-          <button mat-raised-button color="primary" (click)="unsubscribe(3)">S'abonner</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Titre du thème</h3>
-        <p>Descirption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi
-          erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
-        <div class="center">
-          <button mat-raised-button color="primary" (click)="unsubscribe(4)">S'abonner</button>
-        </div>
+    <div *ngIf="userSubscriptions.length > 0" class="center">
+      <div *ngFor="let topic of userSubscriptions" class="topic-item">
+        {{ topic.title }}
+        <button type="button" class="unsubscribe-button" (click)="unsubscribe(topic.id)">
+          Se désabonner
+        </button>
       </div>
     </div>
   </div>

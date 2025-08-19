@@ -1,4 +1,4 @@
-import { TopicDTO } from "../../topics/interfaces/TopicDTO";
+import { TopicDTO } from "../../topics/interfaces/topic-dto";
 
 export interface UserDTO {
   id: number;
