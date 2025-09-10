@@ -1,9 +1,9 @@
 export interface CommentResponseDTO {
   id: number;
-  postId: number;
-  userId: number;
+  post_id: number;
+  user_id: number;
   username: string;
   content: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: string;
+  updated_at: string;
 }

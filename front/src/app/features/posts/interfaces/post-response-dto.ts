@@ -2,11 +2,12 @@ import { CommentResponseDTO } from "./comment-response-dto";
 
 export interface PostResponseDTO {
   id: number;
-  topicId: number;
-  userId: number;
+  topic_id: number;
+  user_id: number;
+  username: string;
   title: string;
   content: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: string;
+  updated_at: string;
   comments: CommentResponseDTO[];
 }
