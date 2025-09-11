@@ -15,6 +15,10 @@ export class UserService {
     return this.http.get<UserDTO>('/api/auth/me');
   }
 
+  getUserById(userId: number): Observable<UserDTO> {
+    return this.http.get<UserDTO>(`/api/auth/${userId}`);
+  }
+
   // update current user profile
   updateUser(data: UpdateUserDTO): Observable<void> {
     return this.http.put<void>('/api/auth/me', data);
@@ -22,11 +26,12 @@ export class UserService {
 
   // unsubscribe from a topic
   unsubscribe(topicId: number): Observable<void> {
-    return this.http.delete<void>(`/api/auth/me/topics/${topicId}`);
+    return this.http.delete<void>(`/api/topics/${topicId}/subscriptions`);
   }
 
   // subscribe to a topic
   subscribe(topicId: number): Observable<void> {
-    return this.http.post<void>(`/api/auth/me/topics/${topicId}`, {});
+    console.log('Sending POST to:', `/api/topics/${topicId}/subscriptions`);
+    return this.http.post<void>(`/api/topics/${topicId}/subscriptions`, {});
   }
 }
