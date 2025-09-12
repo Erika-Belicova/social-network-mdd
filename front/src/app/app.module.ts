@@ -27,6 +27,7 @@ import { CommentsComponent } from './features/posts/components/comments/comments
 import { TopicListComponent } from './features/topics/components/topic-list/topic-list.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     MatSelectModule,
     MatOptionModule,
     MatIconModule,
+    MatSidenavModule,
     MatSnackBarModule,
     ReactiveFormsModule
   ],
