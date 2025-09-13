@@ -1,5 +1,5 @@
 <div class="page-container">
-  <button mat-icon-button [routerLink]="['/']" aria-label="Back" class="arrow-button">
+  <button mat-icon-button [routerLink]="['/posts']" aria-label="Back" class="arrow-button">
     <img src="assets/arrow-left-icon.svg" alt="Back" />
   </button>
   <div class="center">
@@ -8,22 +8,22 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Sélectionner un thème</mat-label>
         <mat-select id="topic" name="topic" [(ngModel)]="selectedTopic">
-          <mat-option *ngFor="let topic of topics" [value]="topic">
-            {{ topic }}
+          <mat-option *ngFor="let topic of topics" [value]="topic.id">
+            {{ topic.title }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <input matInput id="title" name="title" placeholder="Titre de l’article" />
+        <input matInput id="title" name="title" [(ngModel)]="title" placeholder="Titre de l’article" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <textarea matInput id="content" name="content" rows="5" placeholder="Contenu de l’article"></textarea>
+        <textarea matInput id="content" name="content" rows="5" [(ngModel)]="content" placeholder="Contenu de l’article"></textarea>
       </mat-form-field>
 
       <div class="center">
-        <button mat-raised-button color="primary" type="submit" value="Submit" (click)="submitPost()">Créer</button>
+        <button class="purple-button" type="button" (click)="submitPost()">Créer</button>
       </div>
     </form>
   </div>
