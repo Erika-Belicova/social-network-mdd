@@ -1,61 +1,19 @@
 <div class="page-container">
   <div class="center">
     <div class="buttons-top">
-      <button mat-raised-button color="primary" [routerLink]="['/posts/create']">Créer un article</button>
-      <button mat-button (click)="orderBy()">Trier par ↓</button>
+      <button class="purple-button" [routerLink]="['/posts/create']">Créer un article</button>
+      <button mat-button (click)="orderBy()">
+        Trier par {{ sortDescending ? '↓' : '↑' }}
+      </button>
     </div>
     <div class="container-padding cards-container">
-      <a class="card" (click)="goToPost(1)">
-        <h3>Titre de l’article</h3>
-        <div class="post-data">
-          <h4>Date</h4>
-          <h4>Auteur</h4>
+      <a *ngFor="let post of posts" class="card" (click)="goToPost(post.id)">
+        <h3>{{ post.title }}</h3>
+        <div class="post-data flex">
+          <h4>{{ post.created_at | date: 'longDate' }}</h4>
+          <h4>{{ post.username || 'Auteur inconnu'}}</h4>
         </div>
-        <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
-      </a>
-      <a class="card" (click)="goToPost(2)">
-        <h3>Titre de l’article</h3>
-        <div class="post-data">
-          <h4>Date</h4>
-          <h4>Auteur</h4>
-        </div>
-        <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
-      </a>
-      <a class="card" (click)="goToPost(3)">
-        <h3>Titre de l’article</h3>
-        <div class="post-data">
-          <h4>Date</h4>
-          <h4>Auteur</h4>
-        </div>
-        <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
-      </a>
-      <a class="card" (click)="goToPost(4)">
-        <h3>Titre de l’article</h3>
-        <div class="post-data">
-          <h4>Date</h4>
-          <h4>Auteur</h4>
-        </div>
-        <p>Content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim faucibus rhoncus. Morbi erat
-          nibh, consectetur
-          vitae ultrices sit amet, malesuada eget mauris. Ut eleifend dui ut facilisis bibendum. Fusce lectus ex,
-          viverra
-          eget
-          sagittis ut, consectetur ac sem.</p>
+        <p>{{ post.content }}</p>
       </a>
     </div>
   </div>
