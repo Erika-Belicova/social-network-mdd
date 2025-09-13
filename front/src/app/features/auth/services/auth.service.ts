@@ -24,5 +24,6 @@ export class AuthService {
 
   public logout(): void {
     this.tokenService.removeToken();
+    localStorage.removeItem('postsSortOrder'); // reset sort order on logout
   }
 }

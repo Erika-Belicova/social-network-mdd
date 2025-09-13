@@ -12,4 +12,8 @@ export class TopicService {
   getTopics(): Observable<TopicDTO[]> {
     return this.http.get<TopicDTO[]>('/api/topics');
   }
+
+  getTopicById(id: number): Observable<TopicDTO> {
+    return this.http.get<TopicDTO>(`/api/topics/${id}`);
+  }
 }
