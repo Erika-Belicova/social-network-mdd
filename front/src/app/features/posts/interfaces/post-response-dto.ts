@@ -3,6 +3,7 @@ import { CommentResponseDTO } from "./comment-response-dto";
 export interface PostResponseDTO {
   id: number;
   topic_id: number;
+  topic_title: string;
   user_id: number;
   username: string;
   title: string;

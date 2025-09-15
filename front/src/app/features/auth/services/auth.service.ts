@@ -1,28 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { RegisterRequestDTO } from '../interfaces/register-request-dto';
 import { AuthResponse } from '../interfaces/auth-response';
-import { environment } from 'src/environments/environment';
 import { LoginRequestDTO } from '../interfaces/login-request-dto';
 import { TokenService } from '../../../core/services/token.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-	private baseUrl = `${environment.apiUrl}/auth`;
+	private baseUrl = '/api/auth';
 
 	constructor(private http: HttpClient, 
 				private tokenService: TokenService) { }
 
 	public register(registerRequest: RegisterRequestDTO): Observable<AuthResponse> {
-		return this.http.post<AuthResponse>(`${this.baseUrl}/register`, registerRequest);
+		return this.http.post<AuthResponse>(`${this.baseUrl}/register`, registerRequest)
+		  .pipe(
+        tap(response => {
+          // save token after successful registration
+          this.tokenService.saveToken(response.token);
+        })
+      );
 	}
 
 	public login(loginRequest: LoginRequestDTO): Observable<AuthResponse> {
-		return this.http.post<AuthResponse>(`${this.baseUrl}/login`, loginRequest);
+		return this.http.post<AuthResponse>(`${this.baseUrl}/login`, loginRequest)
+		  .pipe(
+        tap(response => {
+          // save token after successful login
+          this.tokenService.saveToken(response.token);
+        })
+      );
 	}
 
-  public logout(): void {
+	public logout(): void {
     this.tokenService.removeToken();
     localStorage.removeItem('postsSortOrder'); // reset sort order on logout
   }
