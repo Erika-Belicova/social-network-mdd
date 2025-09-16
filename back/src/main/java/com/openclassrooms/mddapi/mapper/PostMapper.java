@@ -33,6 +33,11 @@ public class PostMapper {
             postResponseDTO.setUserId(post.getUser().getId());
         }
 
+        if (post.getTopic() != null) {
+            postResponseDTO.setTopicId(post.getTopic().getId());
+            postResponseDTO.setTopicTitle(post.getTopic().getTitle());
+        }
+
         if (post.getComments() != null) {
             postResponseDTO.setComments(commentMapper.toCommentResponseDTOList(post.getComments()));
         }
