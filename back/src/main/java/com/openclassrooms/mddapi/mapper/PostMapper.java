@@ -17,20 +17,39 @@ import java.util.stream.Collectors;
 public class PostMapper {
 
     private final ModelMapper modelMapper;
+    private final CommentMapper commentMapper;
 
     @Autowired
-    public PostMapper(ModelMapper modelMapper) {
+    public PostMapper(ModelMapper modelMapper, CommentMapper commentMapper) {
         this.modelMapper = modelMapper;
+        this.commentMapper = commentMapper;
     }
 
     /** Convert Post entity to PostResponseDTO */
     public PostResponseDTO toPostResponseDTO(Post post) {
-        return modelMapper.map(post, PostResponseDTO.class);
+        PostResponseDTO postResponseDTO = modelMapper.map(post, PostResponseDTO.class);
+        if (post.getUser() != null) {
+            postResponseDTO.setUsername(post.getUser().getUsername());
+            postResponseDTO.setUserId(post.getUser().getId());
+        }
+
+        if (post.getTopic() != null) {
+            postResponseDTO.setTopicId(post.getTopic().getId());
+            postResponseDTO.setTopicTitle(post.getTopic().getTitle());
+        }
+
+        if (post.getComments() != null) {
+            postResponseDTO.setComments(commentMapper.toCommentResponseDTOList(post.getComments()));
+        }
+        return postResponseDTO;
     }
 
     /** Convert PostRequestDTO to Post entity */
     public Post toPostEntity(PostRequestDTO postRequestDTO) {
-        return modelMapper.map(postRequestDTO, Post.class);
+        Post post = new Post();
+        post.setTitle(postRequestDTO.getTitle());
+        post.setContent(postRequestDTO.getContent());
+        return post;
     }
 
     /** Converts a list of post entities to a list of PostResponseDTOs */

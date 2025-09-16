@@ -22,9 +22,16 @@ public class PostResponseDTO {
     @Schema(description = "ID of the topic the post belongs to", example = "3")
     private Long topicId;
 
+    @JsonProperty("topic_title")
+    @Schema(description = "Title of the topic the post belongs to", example = "Java")
+    private String topicTitle;
+
     @JsonProperty("user_id")
     @Schema(description = "ID of the user who created the post", example = "7")
     private Long userId;
+
+    @Schema(description = "Username of the user who created the post", example = "johnsmith")
+    private String username;
 
     @Schema(description = "Title of the post", example = "Introduction to Spring Boot")
     private String title;

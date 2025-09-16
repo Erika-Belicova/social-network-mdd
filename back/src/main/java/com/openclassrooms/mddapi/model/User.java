@@ -3,9 +3,7 @@ package com.openclassrooms.mddapi.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -47,8 +45,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "topic_id")
     )
-    private Set<Topic> topics = new HashSet<>();
-
+    private List<Topic> topics = new ArrayList<>();
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
