@@ -3,9 +3,7 @@ package com.openclassrooms.mddapi.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,7 +34,7 @@ public class Topic {
     private List<Post> posts = new ArrayList<>();
 
     @ManyToMany(mappedBy = "topics")
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

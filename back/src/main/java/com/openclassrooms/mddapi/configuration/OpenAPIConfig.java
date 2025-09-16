@@ -17,7 +17,7 @@ import java.util.List;
  * Defines API metadata, server details, and security schemes
  * including JWT Bearer authentication for API access.
  */
-@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
+@SecurityScheme(name = "Authorization", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 @Configuration
 public class OpenAPIConfig {
 
