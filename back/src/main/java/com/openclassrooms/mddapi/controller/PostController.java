@@ -27,7 +27,7 @@ import java.util.List;
  * Controller for handling post creation, retrieval, and viewing with comments.
  */
 @Tag(name = "Posts", description = "Endpoints for post operations")
-@SecurityRequirement(name = "Authorisation")
+@SecurityRequirement(name = "Authorization")
 @RestController
 @RequestMapping("/api")
 public class PostController {
@@ -71,11 +71,11 @@ public class PostController {
             @ApiResponse(responseCode = "400", description = "Invalid input")
     })
     @PostMapping("/posts")
-    public ResponseEntity<Void> createPost(@RequestBody @Valid PostRequestDTO postRequestDTO) {
+    public ResponseEntity<PostResponseDTO> createPost(@RequestBody @Valid PostRequestDTO postRequestDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = userService.getUserByCredential(authentication.getName());
-        postService.savePost(userDTO.getId(), postRequestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        PostResponseDTO createdPost = postService.savePost(userDTO.getId(), postRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }
 
     /**

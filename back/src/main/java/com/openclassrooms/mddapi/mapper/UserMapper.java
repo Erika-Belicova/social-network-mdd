@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Mapper component for converting between User-related DTOs and User entities.
@@ -22,10 +21,12 @@ import java.util.stream.Collectors;
 public class UserMapper {
 
     private final ModelMapper modelMapper;
+    private final TopicMapper topicMapper; // add this
 
     @Autowired
-    public UserMapper(ModelMapper modelMapper) {
+    public UserMapper(ModelMapper modelMapper, TopicMapper topicMapper) {
         this.modelMapper = modelMapper;
+        this.topicMapper = topicMapper;
     }
 
     @PostConstruct
@@ -45,12 +46,8 @@ public class UserMapper {
     public UserDTO toUserDTO(User user) {
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);
 
-        // map topics from entity to DTOs
-        if (user.getTopics() != null) {
-            List<TopicDTO> topicDTOs = user.getTopics()
-                    .stream()
-                    .map(topic -> modelMapper.map(topic, TopicDTO.class))
-                    .collect(Collectors.toList());
+        if (user.getTopics() != null && !user.getTopics().isEmpty()) {
+            List<TopicDTO> topicDTOs = topicMapper.toTopicDTOList(user.getTopics());
             userDTO.setTopics(topicDTOs);
         }
         return userDTO;

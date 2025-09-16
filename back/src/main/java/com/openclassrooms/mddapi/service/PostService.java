@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -46,7 +45,7 @@ public class PostService {
     }
 
     @Transactional
-    public void savePost(Long userId, PostRequestDTO postRequestDTO) {
+    public PostResponseDTO savePost(Long userId, PostRequestDTO postRequestDTO) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
         Topic topic = topicRepository.findById(postRequestDTO.getTopicId())
@@ -55,7 +54,9 @@ public class PostService {
         Post post = postMapper.toPostEntity(postRequestDTO);
         post.setUser(user);
         post.setTopic(topic);
-        postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+
+        return postMapper.toPostResponseDTO(savedPost);
     }
 
     @Transactional (readOnly = true)
@@ -71,7 +72,7 @@ public class PostService {
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
 
         // get the topics the user is subscribed to
-        Set<Topic> topics = user.getTopics();
+        List<Topic> topics = user.getTopics();
 
         // for each topic, get all posts and collect all posts into one list
         List<Post> allPosts = topics.stream()

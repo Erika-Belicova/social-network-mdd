@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.comment.CommentRequestDTO;
+import com.openclassrooms.mddapi.dto.comment.CommentResponseDTO;
 import com.openclassrooms.mddapi.dto.user.UserDTO;
 import com.openclassrooms.mddapi.service.CommentService;import com.openclassrooms.mddapi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,11 +50,11 @@ public class CommentsController {
             @ApiResponse(responseCode = "401", description = "Unauthorized access")
     })
     @PostMapping("posts/{id}/comments")
-    public ResponseEntity<Void> addComment(@PathVariable("id") Long postId, @Valid @RequestBody CommentRequestDTO commentRequestDTO) {
+    public ResponseEntity<CommentResponseDTO> addComment(@PathVariable("id") Long postId, @Valid @RequestBody CommentRequestDTO commentRequestDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = userService.getUserByCredential(authentication.getName());
-        commentService.saveComment(userDTO.getId(), postId, commentRequestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        CommentResponseDTO createdComment = commentService.saveComment(userDTO.getId(), postId, commentRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdComment);
     }
 
 }

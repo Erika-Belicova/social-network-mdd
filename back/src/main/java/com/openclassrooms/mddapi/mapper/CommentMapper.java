@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.mapper;
 import com.openclassrooms.mddapi.dto.comment.CommentRequestDTO;
 import com.openclassrooms.mddapi.dto.comment.CommentResponseDTO;
 import com.openclassrooms.mddapi.model.Comment;
+import com.openclassrooms.mddapi.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,10 +19,12 @@ import java.util.stream.Collectors;
 public class CommentMapper {
 
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
 
     @Autowired
-    public CommentMapper(ModelMapper modelMapper) {
+    public CommentMapper(ModelMapper modelMapper, UserRepository userRepository) {
         this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
     }
 
     /** Convert Comment entity to CommentResponseDTO */

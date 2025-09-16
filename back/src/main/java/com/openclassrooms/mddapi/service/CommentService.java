@@ -43,7 +43,7 @@ public class CommentService {
     }
 
     @Transactional
-    public void saveComment(Long userId, Long postId, CommentRequestDTO commentRequestDTO) {
+    public CommentResponseDTO saveComment(Long userId, Long postId, CommentRequestDTO commentRequestDTO) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
         Post post = postRepository.findById(postId)
@@ -52,7 +52,9 @@ public class CommentService {
         Comment comment = commentMapper.toCommentEntity(commentRequestDTO);
         comment.setUser(user);
         comment.setPost(post);
-        commentRepository.save(comment);
+        Comment savedComment = commentRepository.save(comment);
+
+        return commentMapper.toCommentResponseDTO(savedComment);
     }
 
     @Transactional (readOnly = true)

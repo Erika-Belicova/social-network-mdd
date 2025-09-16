@@ -69,8 +69,12 @@ public class UserService {
             throw new DuplicateFieldValidationException("Email is already in use");
         }
 
+        // update username and email
         userMapper.updateUserEntityFromDTO(updateUserDTO, existingUser);
-        existingUser.setPassword((passwordEncoder.encode(updateUserDTO.getPassword())));
+
+        if (updateUserDTO.getPassword() != null && !updateUserDTO.getPassword().isBlank()) {
+            existingUser.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
+        }
         User savedUser = userRepository.save(existingUser);
         return userMapper.toUserDTO(savedUser);
     }
