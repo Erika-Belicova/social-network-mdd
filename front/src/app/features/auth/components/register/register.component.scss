@@ -45,6 +45,18 @@ form {
   margin-top: 1rem;
 }
 
+h3 {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 1rem !important;;
+}
+
+label {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1rem !important;
+}
+
 .mat-error {
   font-size: 0.75rem;
   color: #f44336;
@@ -67,7 +79,7 @@ form {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s;
-  margin: 0.75rem 2rem;
+  margin: 30px 40px;
 }
 
 .arrow-button:hover {

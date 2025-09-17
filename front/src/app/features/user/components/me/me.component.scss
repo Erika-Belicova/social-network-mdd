@@ -53,7 +53,7 @@ hr {
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   width: 100%;
   margin: 16px auto;
@@ -75,6 +75,7 @@ hr {
     gap: 0px !important;
     margin: 0px auto;
     padding: 0px;
+    justify-content: center;
   }
 
   .container-padding {
