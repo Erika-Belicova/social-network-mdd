@@ -20,7 +20,7 @@
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
   width: 100%;
   margin: 20px auto;
@@ -40,6 +40,7 @@
   .cards-container {
     gap: 0px !important;
     margin: 0px auto;
+    justify-content: center;
   }
 }
 

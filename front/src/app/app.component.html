@@ -1,2 +1,67 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<ng-container *ngIf="!isHomepage()">
+  <!-- desktop / tablet nav -->
+  <nav class="navbar desktop-nav" *ngIf="!isPublicRoute()">
+    <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
+    <div class="navbar-buttons">
+      <button mat-button class="button-red" (click)="logout()">Se déconnecter</button>
+      <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['/posts']">Articles</button>
+      <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['/topics']">Thèmes</button>
+      <a [routerLink]="['/me']" routerLinkActive="active-profile" [routerLinkActiveOptions]="{ exact: true }"
+        class="profile-button">
+        <img class="navbar-img" src="assets/profile.png" alt="Profile" />
+      </a>
+    </div>
+  </nav>
+
+  <!-- empty desktop navbar for public routes (login/register) -->
+  <nav class="navbar desktop-nav" *ngIf="isPublicRoute()">
+    <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
+  </nav>
+
+  <!-- mobile nav -->
+  <mat-sidenav-container class="mobile-nav-container" *ngIf="!isPublicRoute()">
+    <mat-sidenav-content>
+      <nav class="navbar mobile-nav">
+        <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </nav>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+    <!-- side menu -->
+    <mat-sidenav #drawer mode="over" position="end" class="mobile-menu">
+      <div class="menu-content">
+        <div class="menu-top">
+          <button mat-button class="button-red" (click)="logout()">Se déconnecter</button>
+
+          <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
+            [routerLink]="['/posts']" (click)="drawer.close()">Articles</button>
+
+          <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
+            [routerLink]="['/topics']" (click)="drawer.close()">Thèmes</button>
+        </div>
+
+        <div class="menu-bottom">
+          <a [routerLink]="['/me']" routerLinkActive="active-profile" [routerLinkActiveOptions]="{ exact: true }"
+            class="profile-button" (click)="drawer.close()">
+            <img class="navbar-img" src="assets/profile.png" alt="Profile" />
+          </a>
+        </div>
+      </div>
+    </mat-sidenav>
+
+  </mat-sidenav-container>
+</ng-container>
+
+<!-- for public routes, show content without navbars -->
+<ng-container *ngIf="isPublicRoute() || isHomepage()">
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>

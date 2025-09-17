@@ -1,0 +1,146 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 0px;
+  height: 60px;
+  border-bottom: 1px solid #000;
+}
+
+.navbar-buttons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  max-width: 50%;
+}
+
+.navbar-img {
+  height: 60px;
+  width: auto;
+  padding-top: 16px;
+}
+
+
+.button-red {
+  color: rgb(150, 16, 16) !important;
+  font-size: small;
+}
+
+.button-purple {
+  color: rgb(108, 92, 207) !important;
+}
+
+.profile-button.active-profile img {
+  filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
+}
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 0px;
+  height: 60px;
+  border-bottom: 1px solid #000;
+}
+
+.navbar-buttons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  max-width: 50%;
+}
+
+.button-red {
+  color: rgb(150, 16, 16) !important;
+  font-size: small;
+}
+
+.button-purple {
+  color: rgb(108, 92, 207) !important;
+}
+
+.profile-button.active-profile img {
+  filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
+}
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+.desktop-nav {
+  display: flex;
+}
+
+.mobile-nav {
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 1rem;
+  border-bottom: 1px solid #000;
+}
+
+  .mobile-nav {
+    display: none;
+  }
+
+.mobile-menu {
+  height: 100%;
+  width: 66%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.menu-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.menu-top button {
+  width: auto;
+  align-self: flex-end;
+}
+
+.menu-bottom {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-nav-container {
+    display: block;
+    height: 100vh;
+  }
+
+  .mobile-nav {
+    display: flex !important;
+  }
+}

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 
 @Component({
@@ -9,6 +10,9 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 })
 export class NavbarComponent {
   currentRoute = '';
+
+  // capture the drawer from template
+  @ViewChild('drawer') drawer!: MatSidenav;
 
   constructor(private router: Router, private authService: AuthService) {
     this.router.events.subscribe(event => {

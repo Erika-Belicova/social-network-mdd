@@ -23,24 +23,15 @@ export class PostDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const postId = Number(this.route.snapshot.paramMap.get('id'));
-    this.postService.getPostById(postId).subscribe({
-      next: (data) => {
-        this.post = data;
-        if (!this.post.comments) this.post.comments = [];
-
-        // fetch topic title
-        this.topicService.getTopics().subscribe({
-          next: (topics) => {
-            const topic = topics.find(topic => topic.id === this.post.topic_id);
-            this.topicTitle = topic ? topic.title : 'Topic unknown';
-          },
-          error: (err) => console.error('Error fetching topics:', err)
-        });
-      },
-      error: (err) => console.error('Error fetching post:', err)
-    });
-  }
+  const postId = Number(this.route.snapshot.paramMap.get('id'));
+  this.postService.getPostById(postId).subscribe({
+    next: (data) => {
+      this.post = data;
+      if (!this.post.comments) this.post.comments = [];
+    },
+    error: (err) => console.error('Error fetching post:', err)
+  });
+}
 
   addComment() {
     if (!this.newComment.trim()) return;
