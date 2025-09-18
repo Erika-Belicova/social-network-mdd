@@ -1,7 +1,7 @@
 <ng-container *ngIf="!isHomepage()">
   <!-- desktop / tablet nav -->
   <nav class="navbar desktop-nav" *ngIf="!isPublicRoute()">
-    <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
+    <img class="navbar-img logo" src="assets/logo_p6.png" alt="Logo MDD" />
     <div class="navbar-buttons">
       <button mat-button class="button-red" (click)="logout()">Se déconnecter</button>
       <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
@@ -10,14 +10,14 @@
         [routerLink]="['/topics']">Thèmes</button>
       <a [routerLink]="['/me']" routerLinkActive="active-profile" [routerLinkActiveOptions]="{ exact: true }"
         class="profile-button">
-        <img class="navbar-img" src="assets/profile.png" alt="Profile" />
+        <img class="navbar-img profile" src="assets/profile.png" alt="Profile" />
       </a>
     </div>
   </nav>
 
   <!-- empty desktop navbar for public routes (login/register) -->
   <nav class="navbar desktop-nav" *ngIf="isPublicRoute()">
-    <img class="navbar-img" src="assets/logo_p6.png" alt="Logo MDD" />
+    <img class="navbar-img logo" src="assets/logo_p6.png" alt="Logo MDD" />
   </nav>
 
   <!-- mobile nav -->

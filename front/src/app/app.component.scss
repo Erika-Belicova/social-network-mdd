@@ -1,36 +1,19 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
-  margin-bottom: 0px;
-  height: 60px;
-  border-bottom: 1px solid #000;
-}
-
-.navbar-buttons {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  gap: 1rem;
-  flex: 1;
-  max-width: 50%;
-}
-
 .navbar-img {
-  height: 60px;
-  width: auto;
   padding-top: 16px;
 }
 
-
-.button-red {
-  color: rgb(150, 16, 16) !important;
-  font-size: small;
+.logo {
+  height: auto;
+  width: 140px;
+  padding: 0;
 }
 
-.button-purple {
-  color: rgb(108, 92, 207) !important;
+.profile {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background-color: rgb(128, 128, 128, 0.2) ;
+  border-radius: 50%;
 }
 
 .profile-button.active-profile img {
@@ -49,7 +32,7 @@
   align-items: center;
   padding: 0 1rem;
   margin-bottom: 0px;
-  height: 60px;
+  height: 94px;
   border-bottom: 1px solid #000;
 }
 
@@ -60,15 +43,24 @@
   gap: 1rem;
   flex: 1;
   max-width: 50%;
+  margin-right: 30px;
 }
 
 .button-red {
-  color: rgb(150, 16, 16) !important;
-  font-size: small;
+  color: #A40F0F !important;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif !important;
+}
+
+button {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .button-purple {
-  color: rgb(108, 92, 207) !important;
+  color: #6c5ccf !important;
 }
 
 .profile-button.active-profile img {
@@ -88,14 +80,11 @@
 .mobile-nav {
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 62px;
   padding: 0 1rem;
   border-bottom: 1px solid #000;
+  display: none;
 }
-
-  .mobile-nav {
-    display: none;
-  }
 
 .mobile-menu {
   height: 100%;
