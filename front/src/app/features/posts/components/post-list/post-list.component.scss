@@ -9,15 +9,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 97%;
+  width: 100%;
   max-width: 100vw;
+  margin-bottom: 36px;
 }
 
 .card {
   background-color: #EEEEEE;
   padding: 20px;
-  border-radius: 10px;
-  width: calc(50% - 2rem);
+  border-radius: 8px;
+  width: calc(50% - 1rem);
   box-sizing: border-box;
   cursor: pointer;
   transition: background-color 0.1s ease;
@@ -25,6 +26,24 @@
 
 .card:hover {
   background-color: #d6d6d6b4;
+}
+
+.purple-button {
+  margin: 0;
+}
+
+.sort-button {
+  font-family: 'Inter', sans-serif !important;
+  color: #000000;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.sort-icon {
+  vertical-align: top;
+  width: auto;
+  height: 20px;
+  margin-left: 4px;
 }
 
 .container-padding {
@@ -37,7 +56,7 @@
   justify-content: flex-start;
   gap: 2rem;
   width: 100%;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 
 .post-data {
@@ -62,7 +81,7 @@
 
 .page-container {
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
 }
 
 .post-data > h4 {
