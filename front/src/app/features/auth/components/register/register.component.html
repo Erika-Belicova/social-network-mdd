@@ -9,20 +9,20 @@
   <h3>Inscription</h3>
   <form #registerFormRef [formGroup]="registerForm" (ngSubmit)="register()">
     <label for="username">Nom d’utilisateur</label>
-    <input id="username" formControlName="username" matInput class="custom-input" type="text" />
+    <input id="username" formControlName="username" matInput class="user-input" type="text" />
     <div *ngIf="submitted && registerForm.get('username')?.invalid" class="mat-error">
       Le nom d’utilisateur est requis.
     </div>
 
     <label for="email">Adresse e-mail</label>
-    <input id="email" formControlName="email" matInput class="custom-input" type="email" />
+    <input id="email" formControlName="email" matInput class="user-input" type="email" />
     <div *ngIf="submitted && registerForm.get('email')?.invalid" class="mat-error">
       <div *ngIf="registerForm.get('email')?.errors?.['required']">L’adresse e-mail est requise.</div>
       <div *ngIf="registerForm.get('email')?.errors?.['email']">Format d’e-mail invalide.</div>
     </div>
 
     <label for="password">Mot de passe</label>
-    <input id="password" formControlName="password" matInput class="custom-input" type="password" />
+    <input id="password" formControlName="password" matInput class="user-input" type="password" />
     <div *ngIf="submitted && registerForm.get('password')?.invalid" class="mat-error">
       <div *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis.</div>
       <div *ngIf="registerForm.get('password')?.errors?.['pattern']">

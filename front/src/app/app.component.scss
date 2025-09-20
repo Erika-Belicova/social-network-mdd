@@ -12,8 +12,11 @@
   width: 48px;
   height: 48px;
   padding: 0;
-  background-color: rgb(128, 128, 128, 0.2) ;
+  background-color: rgb(128, 128, 128, 0.2);
   border-radius: 50%;
+  filter: brightness(120%) opacity(80%);
+  outline: solid 3px rgb(255, 255, 255);
+  outline-offset: -3px; 
 }
 
 .profile-button.active-profile img {
@@ -64,6 +67,7 @@ button {
 
 .profile-button.active-profile img {
   filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
+  outline-width: 1px;
 }
 
 @media (max-width: 768px) {
@@ -88,7 +92,7 @@ button {
 .mobile-menu {
   height: 100%;
   width: 66%;
-  padding: 1rem;
+  padding: 16px;
   display: flex;
   flex-direction: column;
 }
@@ -104,7 +108,8 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 1rem;
+  gap: 0.4rem;
+  margin-top: 50px;
 }
 
 .menu-top button {

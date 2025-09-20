@@ -7,10 +7,11 @@
 
 .card {
   background-color: #EEEEEE;
-  padding: 20px;
-  border-radius: 10px;
-  width: calc(50% - 2rem);
+  padding: 16px;
+  border-radius: 8px;
+  width: calc(50% - 0.5rem);
   box-sizing: border-box;
+  transition: background-color 0.1s ease;
 }
 
 .container-padding {
@@ -21,14 +22,36 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 
 .cards-container .card button {
   display: block;
   margin: 0 auto;
+}
+
+.page-container {
+  margin: 0 auto !important;
+  padding: 30px !important;
+}
+
+.card p {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1rem;
+  margin-bottom: 16px;
+}
+
+.purple-button {
+  width: 160px !important;
 }
 
 @media (max-width: 600px) {
@@ -42,20 +65,8 @@
     margin: 0px auto;
     justify-content: center;
   }
-}
 
-.page-container {
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.card p {
-  display: -webkit-box;
-  display: box;
-  -webkit-box-orient: vertical;
-  box-orient: vertical;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  .page-container {
+    padding: 16px 12px !important;
+  }
 }

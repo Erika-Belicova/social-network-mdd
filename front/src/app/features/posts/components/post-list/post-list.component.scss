@@ -16,9 +16,9 @@
 
 .card {
   background-color: #EEEEEE;
-  padding: 20px;
+  padding: 16px;
   border-radius: 8px;
-  width: calc(50% - 1rem);
+  width: calc(50% - 1.25rem);
   box-sizing: border-box;
   cursor: pointer;
   transition: background-color 0.1s ease;
@@ -37,6 +37,8 @@
   color: #000000;
   font-weight: 700;
   font-size: 16px;
+  border-radius: 8px;
+  padding: 16px;
 }
 
 .sort-icon {
@@ -54,14 +56,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1.5rem 2.5rem;
   width: 100%;
   margin: 0 auto;
 }
 
 .post-data {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-start; 
   align-items: center;
   gap: 1rem;
 }
@@ -80,8 +82,8 @@
 }
 
 .page-container {
-  margin: 0 auto;
-  padding: 40px;
+  margin: 0 auto !important;
+  padding: 30px 40px !important;
 }
 
 .post-data > h4 {
@@ -98,4 +100,6 @@
   line-clamp: 5;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1rem;
+  margin-bottom: 0;
 }

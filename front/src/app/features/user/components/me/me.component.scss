@@ -3,10 +3,22 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex: 1;
+}
+
+.main-content {
+  padding: 24px !important;
+  flex: 1;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .profile {
-  margin-top: 24px;
+  margin-top: 30px;
   margin-bottom: 0;
 }
 
@@ -16,10 +28,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-h2 {
-  margin: 10px 0 0 0;
 }
 
 h3 {
@@ -33,70 +41,36 @@ mat-form-field {
 }
 
 hr {
-  margin: 10px 30px 20px 30px;
+  margin: 10px 40px 20px 40px;
   border: 0;
-  border-top: 2px solid #000;
+  border-top: 1px solid #000;
 }
 
 .container-padding {
-  margin: 50px;
+  margin: 0px auto;
 }
 
 .card {
   background-color: #EEEEEE;
-  padding: 14px 20px;
+  padding: 16px;
   border-radius: 8px;
-  width: calc(50% - 0.75rem);
+  width: calc(50% - 0.5rem);
   box-sizing: border-box;
+  transition: background-color 0.1s ease;
 }
 
 .cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 20px;
+  gap: 1rem;
   width: 100%;
-  margin: 16px auto;
+  margin: 0 auto;
 }
 
 .cards-container .card button {
   display: block;
   margin: 0 auto;
-}
-
-@media (max-width: 600px) {
-  .card {
-    min-width: 330px;
-    max-width: 90vw;
-    margin: 10px 0px;
-  }
-
-  .cards-container {
-    gap: 0px !important;
-    margin: 0px auto;
-    padding: 0px;
-    justify-content: center;
-  }
-
-  .container-padding {
-    margin: 0px;
-  }
-
-  .page-container {
-    margin: 10 auto;
-    padding: 0 20px 10px 20px !important;
-  }
-
-  hr {
-    margin: 12px 10px 16px 10px;
-    border: 0;
-    border-top: 2px solid #000;
-  }
-}
-
-.page-container {
-  margin: 10 auto;
-  padding: 0 25px;
 }
 
 .subscriptions-container {
@@ -119,7 +93,7 @@ hr {
   padding-bottom: 0;
 }
 
-.custom-input {
+.user-input {
   width: 280px;
   padding: 12px 15px;
   border-radius: 8px;
@@ -131,9 +105,14 @@ hr {
   margin-top: 10px;
 }
 
-.custom-input:focus {
+.user-input:focus {
   border-color: #4a148c;
   box-shadow: 0 0 6.25px rgba(75, 0, 130, 0.5);
+}
+
+.user-input::placeholder {
+  color: black;
+  opacity: 1;
 }
 
 form {
@@ -145,8 +124,48 @@ form {
   display: box;
   -webkit-box-orient: vertical;
   box-orient: vertical;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1rem;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    min-width: 330px;
+    max-width: 90vw;
+    margin: 10px 0px;
+  }
+
+  .cards-container {
+    gap: 0px !important;
+    margin: 0px auto;
+    padding: 0px;
+    justify-content: center;
+  }
+
+  .container-padding {
+    margin: 0px;
+  }
+
+  .page-container {
+    margin: 0 auto !important;
+    padding: 40px !important;
+  }
+
+  hr {
+    margin: 12px 10px 16px 10px;
+    border: 0;
+    border-top: 2px solid #000;
+  }
+
+  .main-content {
+    padding: 0 24px 24px 24px !important;
+  }
+
+  h2 {
+    margin-bottom: 8px;
+  }
 }

@@ -29,7 +29,7 @@ mat-form-field {
   box-shadow: none !important;
 }
 
-.custom-input {
+.user-input {
   width: 218px;
   padding: 15px 16px;
   border-radius: 8px;
@@ -40,7 +40,7 @@ mat-form-field {
   margin-bottom: 24px;
 }
 
-.custom-input:focus {
+.user-input:focus {
   border-color: #4a148c;
   box-shadow: 0 0 5px rgba(75, 0, 130, 0.5);
 }

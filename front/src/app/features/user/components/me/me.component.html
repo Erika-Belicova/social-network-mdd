@@ -1,20 +1,20 @@
-<div class="page-container">
+<div class="main-content">
   <div class="profile">
     <h2>Profil utilisateur</h2>
     <div class="profile-info">
       <form *ngIf="profileForm" [formGroup]="profileForm" (ngSubmit)="updateUser()">
 
-        <input id="username" formControlName="username" class="custom-input" type="text" placeholder="Nom d’utilisateur" />
+        <input id="username" formControlName="username" class="user-input" type="text" placeholder="Nom d’utilisateur" />
         <div *ngIf="profileForm.get('username')?.invalid && profileForm.get('username')?.touched" class="mat-error">
           Le nom d’utilisateur est requis.
         </div>
 
-        <input id="email" formControlName="email" class="custom-input" type="email" placeholder="E-mail" />
+        <input id="email" formControlName="email" class="user-input" type="email" placeholder="E-mail" />
         <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="mat-error">
           Un e-mail valide est requis.
         </div>
 
-        <input id="password" formControlName="password" class="custom-input" type="password"  placeholder="Mot de passe" />
+        <input id="password" formControlName="password" class="user-input" type="password"  placeholder="Mot de passe" />
         <div *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched" class="mat-error">
           <div *ngIf="profileForm.get('password')?.errors?.['pattern']">
             Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.
