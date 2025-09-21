@@ -14,25 +14,37 @@
       <h4>{{ post.topic_title }}</h4>
     </div>
     <p>{{ post.content }}</p>
-  </div>
 
-  <hr />
+    <hr />
 
-  <div class="left comments">
     <h4>Commentaires</h4>
-    <div class="comment-row" *ngFor="let comment of post.comments">
-      <p class="username">{{ comment.username }}</p>
-      <textarea class="comment-box" rows="3" readonly>{{ comment.content }}</textarea>
-    </div>
+    <div class="comments-section">
+      <div class="comments">
 
-    <div class="comment-input-wrapper">
-      <mat-form-field appearance="outline" class="comment-input-field">
-        <textarea matInput placeholder="Écrivez ici votre commentaire"
-          [(ngModel)]="newComment" rows="3" class="comment-input"></textarea>
-      </mat-form-field>
-      <button mat-icon-button class="button-wrapper" (click)="addComment()">
-        <img class="comment-button" src="assets/paper_plane.svg" alt="Add comment" />
-      </button>
+        <!-- comments -->
+        <div class="comment-row" *ngFor="let comment of post.comments">
+          <p class="username">{{ comment.username }}</p>
+          <textarea class="comment-box" rows="3" readonly>{{ comment.content }}</textarea>
+        </div>
+
+      </div>
+
+      <!-- input -->
+      <div class="comment-input-wrapper" [formGroup]="commentForm">
+        <textarea formControlName="comment" class="comment-input" rows="4" placeholder="Écrivez ici votre commentaire"></textarea>
+
+        <!-- validation -->
+        <div *ngIf="commentForm.get('comment')?.invalid && commentForm.get('comment')?.touched" class="mat-error">
+          <div *ngIf="commentForm.get('comment')?.errors?.['required']">
+            Le commentaire est requis.
+          </div>
+        </div>
+
+        <!-- add button -->
+        <button mat-icon-button type="button" class="button-wrapper" (click)="addComment()">
+          <img class="comment-button" src="assets/paper_plane.svg" alt="Add comment" />
+        </button>
+      </div>
     </div>
   </div>
 

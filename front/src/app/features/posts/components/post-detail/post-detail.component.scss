@@ -3,71 +3,92 @@
   justify-content: left;
   align-items: left;
   flex-direction: column;
-  margin: 20px 60px 20px 60px;
-  max-width: 80vw;
+  margin: 0;
+  max-width: 100vw;
 }
 
 .post-data {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: 4rem;
+  margin: 12px 0;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+}
+
+p {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
 }
 
 .post-header {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
   display: flex;
+  justify-content: left;
   align-items: center;
-  gap: 0.5rem;
+  gap: 15px;
+  margin-bottom: 0.5rem;
 }
 
 h2 {
-  margin: 8px 0px 0px 0px !important;
-  font-weight: bold;
+  margin: 0px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
 }
 
 .comment-row {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 3rem;
   margin-bottom: 2rem;
-}
-
-.username {
-  min-width: 10%;
-  margin: 0;
+  margin-right: 76px;
 }
 
 .comment-box {
-  width: 80%;
+  flex: 1;
   background-color: #EEEEEE;
   border: none;
-  border-radius: 8px;
-  padding: 0.75rem;
+  border-radius: 16px;
   resize: none;
-  font-family: inherit;
-  font-size: 1rem;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 16px;
 }
 
-.comments {
-  padding: 20px 0px 20px 0px;
+:focus-visible {
+    outline: none !important;
+}
+
+.comments-section {
+  padding-left: 3rem;
 }
 
 .comment-input {
-  width: 70vw;
+  flex: 1;
+  border-radius: 16px;
+  border: #000 solid 1px;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 16px;
 }
 
 .comment-input-wrapper {
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 0.5rem;
+  gap: 1rem;
+  margin: 40px 0;
 }
 
 .comment-input-field {
-  flex: 1;
-}
-
-.comment-input-field .mat-form-field-wrapper {
   width: 100%;
 }
 
@@ -78,7 +99,7 @@ button {
 .button-wrapper {
   width: 68px;
   height: 68px;
-  margin-bottom: 16px;
+  align-items: center;
 }
 
 .button-wrapper .comment-button {
@@ -89,20 +110,27 @@ button {
 
 .page-container {
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 40px 40px 90px;
+  flex: 1;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .arrow-button {
   border: none;
   background: transparent;
   border-radius: 50%;
-  padding: 8px;
+  padding: 0px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s;
-  margin: 0.75rem 2rem;
+  margin-left: -64px;
 }
 
 .arrow-button:hover {
@@ -115,4 +143,87 @@ button {
   margin: 0.75rem 2rem;
   display: block;
   pointer-events: none;
+}
+
+hr {
+  margin: 1.2rem 0 2rem 0 !important;
+  border: 0;
+  border-top: 1px solid #000;
+}
+
+h4 {
+  margin: 1rem 0 2.5rem 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+}
+
+.comment-row {
+  display: grid;
+  grid-template-columns: max-content auto;
+  align-items: flex-start;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  max-width: calc(100% - 76px);
+  margin-right: 76px;
+}
+
+.comment-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.comment-box {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #EEEEEE;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  resize: none;
+  overflow-wrap: break-word;
+}
+
+.comments {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 1.5rem 3rem;
+  max-width: calc(100% - 84px);
+}
+
+.comment-row {
+  display: contents;
+}
+
+.username {
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  overflow: visible;
+  padding-top: 6px !important;
+}
+
+.comment-box {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #EEEEEE;
+  border: none;
+  border-radius: 16px;
+  resize: none;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 16px;
+}
+
+textarea:focus {
+  border-color: #4a148c;
+  box-shadow: 0 0 6.25px rgba(75, 0, 130, 0.5);
 }
