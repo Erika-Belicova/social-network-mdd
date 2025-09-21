@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { TopicDTO } from '../../../topics/interfaces/topic-dto';
 import { PostService } from '../../services/post.service';
 import { UserService } from '../../../user/services/user.service';
@@ -14,55 +17,68 @@ import { UserDTO } from 'src/app/features/user/interfaces/user-dto';
 })
 export class PostFormComponent implements OnInit {
   topics: TopicDTO[] = [];
-  selectedTopic: number | null = null;
-
-  title = '';
-  content = '';
+  postForm!: FormGroup;
 
   constructor(
     private router: Router,
+    private fb: FormBuilder,
     private postService: PostService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.fetchSubscribedTopics();
+
+    this.postForm = this.fb.group({
+      topicId: ['', Validators.required],
+      title: ['', Validators.required],
+      content: ['', [Validators.required]]
+    });
   }
 
   fetchSubscribedTopics() {
     this.userService.getCurrentUser().subscribe({
       next: (user: UserDTO) => {
-        this.topics = user.topics; // only the user's subscribed topics
+        this.topics = user.topics; // only subscribed topics
       },
-      error: (err) => console.error('Error fetching user subscriptions:', err)
+      error: (err) => {
+        console.error('Error fetching user subscriptions:', err);
+        this.snackBar.open(
+          'Impossible de charger vos thèmes abonnés.',
+          'Fermer',
+          { duration: 4000, panelClass: ['snackbar-error'] }
+        );
+      }
     });
   }
 
   submitPost() {
-    if (!this.selectedTopic) {
-      alert('Veuillez sélectionner un thème.');
+    this.postForm.markAllAsTouched();
+    if (this.postForm.invalid) {
+      this.snackBar.open(
+        'Veuillez remplir correctement le formulaire.',
+        'Fermer',
+        { duration: 3000, panelClass: ['snackbar-error'] }
+      );
       return;
     }
 
-    if (!this.title || !this.content) {
-      alert('Veuillez remplir le titre et le contenu.');
-      return;
-    }
-
-    const postData: PostRequestDTO = {
-      topicId: this.selectedTopic,
-      title: this.title,
-      content: this.content
-    };
+    const postData: PostRequestDTO = this.postForm.value;
 
     this.postService.createPost(postData).subscribe({
       next: (post: PostResponseDTO) => {
-        // navigate to the newly created post
+        this.snackBar.open(
+          'Article créé avec succès !',
+          'Fermer',
+          { duration: 3000, panelClass: ['snackbar-success'] }
+        );
         this.router.navigate(['/posts', post.id]);
       },
       error: (err) => {
         console.error('Error creating post:', err);
-        alert('Une erreur est survenue lors de la création de l’article.');
+        const message = err?.error?.message || 'Une erreur est survenue lors de la création de l’article.';
+        this.snackBar.open(message, 'Fermer', { duration: 4000, panelClass: ['snackbar-error'] });
       }
     });
   }
