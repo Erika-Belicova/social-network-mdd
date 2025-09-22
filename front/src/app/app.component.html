@@ -41,7 +41,7 @@
           <button mat-button class="button-red" (click)="logout()">Se déconnecter</button>
 
           <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
-            [routerLink]="['/posts']" (click)="drawer.close()" cdkFocusInitial>Articles</button>
+            [routerLink]="['/posts']" (click)="drawer.close()">Articles</button>
 
           <button mat-button routerLinkActive="button-purple" [routerLinkActiveOptions]="{ exact: true }"
             [routerLink]="['/topics']" (click)="drawer.close()">Thèmes</button>
@@ -49,7 +49,7 @@
 
         <div class="menu-bottom">
           <a [routerLink]="['/me']" routerLinkActive="active-profile" [routerLinkActiveOptions]="{ exact: true }"
-            class="profile-button" (click)="drawer.close()">
+            class="profile-button" (click)="drawer.close()" cdkFocusInitial>
             <img class="navbar-img profile" src="assets/profile.png" alt="Profile" />
           </a>
         </div>

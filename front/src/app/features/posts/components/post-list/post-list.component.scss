@@ -68,22 +68,17 @@
   gap: 1rem;
 }
 
-@media (max-width: 600px) {
-  .card {
-    width: 100%;
-    margin: 10px;
-  }
-
-  .cards-container {
-    gap: 0px !important;
-    margin: 0px auto;
-    justify-content: center;
-  }
-}
-
 .page-container {
   margin: 0 auto !important;
   padding: 30px 40px !important;
+  flex: 1;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .post-data > h4 {
@@ -100,6 +95,40 @@
   line-clamp: 5;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1rem;
+  line-height: normal;
   margin-bottom: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+
+  .cards-container {
+    gap: 1.5rem !important;
+    margin: 0px auto;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .buttons-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-container {
+    margin: 0 auto !important;
+    padding: 24px !important;
+  }
 }

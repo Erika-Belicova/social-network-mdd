@@ -78,14 +78,16 @@ hr {
 }
 
 .mat-error {
-  font-size: 0.9375rem;
-  color: #f44336;
+  font-size: 1rem;
+  color: #EA1A1A;
   display: block;
-  width: 287.5px;
+  width: 100%;
   text-align: left;
   white-space: normal;
-  margin: -15px 0 20px 0;
+  margin: 4px 0 16px 0;
+  padding: 0 4px;
   word-break: break-word;
+  min-height: 1.2rem;
 }
 
 .button-container {
@@ -131,19 +133,21 @@ form {
   line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1rem;
+  line-height: normal;
   margin-bottom: 16px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .card {
-    min-width: 330px;
-    max-width: 90vw;
-    margin: 10px 0px;
+    width: 100%;
   }
 
   .cards-container {
-    gap: 0px !important;
+    gap: 1.5rem !important;
     margin: 0px auto;
     padding: 0px;
     justify-content: center;
@@ -161,7 +165,7 @@ form {
   hr {
     margin: 12px 10px 16px 10px;
     border: 0;
-    border-top: 2px solid #000;
+    border-top: 1px solid #000;
   }
 
   .main-content {

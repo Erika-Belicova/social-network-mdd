@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
@@ -15,6 +15,7 @@ export class PostDetailComponent implements OnInit {
   post!: PostResponseDTO;  // will hold post data
   commentForm!: FormGroup;
   topicTitle: string = '';
+  @ViewChild('commentInput') commentInput!: ElementRef<HTMLTextAreaElement>;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +61,11 @@ export class PostDetailComponent implements OnInit {
 
         // clear the input
         this.commentForm.reset();
+
+        // scroll to comment input smoothly
+        setTimeout(() => {
+          this.commentInput.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
       },
       error: (err) => console.error('Error adding comment:', err)
     });

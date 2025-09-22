@@ -14,6 +14,9 @@
         <option value="" disabled invalid>Sélectionner un thème</option>
         <option *ngFor="let topic of topics" [value]="topic.id">{{ topic.title }}</option>
       </select>
+      <div *ngIf="postForm.get('topicId')?.invalid && postForm.get('topicId')?.touched" class="mat-error">
+        Le thème est requis.
+      </div>
 
       <!-- title -->
       <input id="title" formControlName="title" class="user-input" type="text" placeholder="Titre de l’article"/>
@@ -30,7 +33,7 @@
       </div>
 
       <div class="center button-container">
-        <button type="submit" class="purple-button-form" [disabled]="postForm.invalid">
+        <button type="submit" class="purple-button-form">
           Créer
         </button>
       </div>

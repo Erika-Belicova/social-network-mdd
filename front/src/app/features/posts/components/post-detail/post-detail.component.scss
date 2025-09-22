@@ -12,7 +12,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 4rem;
-  margin: 12px 0;
+  margin-bottom: 1rem;
   font-family: 'Inter', sans-serif !important;
   font-size: 20px !important;
   font-weight: 400 !important;
@@ -22,6 +22,7 @@ p {
   font-family: 'Inter', sans-serif !important;
   font-size: 20px !important;
   font-weight: 400 !important;
+  line-height: normal !important;
 }
 
 .post-header {
@@ -85,7 +86,6 @@ h2 {
   align-items: center;
   width: 100%;
   gap: 1rem;
-  margin: 40px 0;
 }
 
 .comment-input-field {
@@ -152,7 +152,7 @@ hr {
 }
 
 h4 {
-  margin: 1rem 0 2.5rem 0 !important;
+  margin: 1rem 0 !important;
   font-family: 'Inter', sans-serif !important;
   font-size: 20px !important;
   font-weight: 400 !important;
@@ -195,6 +195,7 @@ h4 {
   grid-template-columns: max-content 1fr;
   gap: 1.5rem 3rem;
   max-width: calc(100% - 84px);
+  margin-bottom: 40px !important;
 }
 
 .comment-row {
@@ -226,4 +227,100 @@ h4 {
 textarea:focus {
   border-color: #4a148c;
   box-shadow: 0 0 6.25px rgba(75, 0, 130, 0.5);
+}
+
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mat-error {
+  font-size: 1rem;
+  color: #EA1A1A;
+  display: block;
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+  margin: 4px 0 16px 0;
+  padding: 0 4px;
+  word-break: break-word;
+  font-family: 'Inter', sans-serif !important;
+}
+
+@media (max-width: 768px) {
+  .comments-section {
+    padding-left: 0;
+  }
+
+  .page-container {
+    padding: 24px !important;
+  }
+
+  .arrow-button {
+    margin-left: 0;
+  }
+
+  .arrow-button img {
+    width: 40px;
+    height: 40px;
+    margin: -16px 0 0 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  .post-header {
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  h2 {
+    text-align: left !important;
+  }
+
+  h4 {
+    margin: 0 !important;
+  }
+
+  .post-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 1.8rem 0;
+  }
+
+  .post-data > :nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  hr {
+    margin-bottom: 1rem !important;
+  }
+
+  .comments {
+    max-width: 100% !important;
+    margin-bottom: 1.5rem !important;
+    grid-template-columns: 1fr;
+    gap: 0rem;
+  }
+
+  .comments > :first-child {
+    justify-self: end;
+  }
+
+  .comments > :last-child {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .username {
+    text-align: right;
+    padding: 0 4px;
+    margin-top: 0.8rem;
+  }
+
+  .comment-input-wrapper {
+    gap: 0;
+    margin-top: 1rem;
+  }
 }

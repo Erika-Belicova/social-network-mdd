@@ -37,10 +37,11 @@ button {
 
 @media (max-width: 768px) {
   .center {
-    justify-content: flex-start;
-    padding-top: 10vh;
-    height: auto;
-    min-height: 100vh;
+    height: auto !important;
+    min-height: 0 !important;
+    padding-top: 10vh !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
   }
 
   .button-row {
@@ -62,11 +63,5 @@ button {
     padding: 20px 24px;
     font-size: 1.2rem;
     font-weight: 400;
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  .center {
-    padding-top: 0vh;
   }
 }

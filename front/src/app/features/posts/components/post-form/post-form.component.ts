@@ -56,11 +56,6 @@ export class PostFormComponent implements OnInit {
   submitPost() {
     this.postForm.markAllAsTouched();
     if (this.postForm.invalid) {
-      this.snackBar.open(
-        'Veuillez remplir correctement le formulaire.',
-        'Fermer',
-        { duration: 3000, panelClass: ['snackbar-error'] }
-      );
       return;
     }
 
@@ -77,7 +72,14 @@ export class PostFormComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error creating post:', err);
-        const message = err?.error?.message || 'Une erreur est survenue lors de la création de l’article.';
+
+        let message = 'Une erreur est survenue lors de la création de l’article.';
+        
+        // check for duplicate title error from the back-end
+        if (err?.status === 409) {
+          message = 'Un article avec ce titre existe déjà.';
+        }
+
         this.snackBar.open(message, 'Fermer', { duration: 4000, panelClass: ['snackbar-error'] });
       }
     });
