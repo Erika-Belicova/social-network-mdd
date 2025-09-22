@@ -46,27 +46,30 @@
   line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1rem;
+  line-height: normal;
   margin-bottom: 16px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .purple-button {
   width: 160px !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .card {
     width: 100%;
-    margin: 10px;
   }
 
   .cards-container {
-    gap: 0px !important;
+    gap: 1.5rem !important;
     margin: 0px auto;
     justify-content: center;
   }
 
   .page-container {
-    padding: 16px 12px !important;
+    padding: 24px !important;
   }
 }

@@ -62,15 +62,17 @@ label {
 }
 
 .mat-error {
-  font-size: 0.75rem;
-  color: #f44336;
+  font-size: 0.9rem;
+  color: #EA1A1A;
   display: block;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  width: 236px;
+  font-family: 'Inter', sans-serif !important;
+  width: 230px;
   text-align: left;
   white-space: normal;
-  margin: -12px 0 16px 0;
+  margin: -16px 0 16px 0;
+  padding: 0 4px;
   word-break: break-word;
+  min-height: 1.2rem;
 }
 
 .arrow-button {
@@ -112,5 +114,14 @@ label {
 @media (max-width: 768px) {
   #logo.hidden {
     display: block !important;
+  }
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    min-height: auto;
   }
 }

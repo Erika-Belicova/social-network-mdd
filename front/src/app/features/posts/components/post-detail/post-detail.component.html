@@ -31,12 +31,14 @@
 
       <!-- input -->
       <div class="comment-input-wrapper" [formGroup]="commentForm">
-        <textarea formControlName="comment" class="comment-input" rows="4" placeholder="Écrivez ici votre commentaire"></textarea>
+        <div class="textarea-wrapper">
+          <textarea #commentInput formControlName="comment" class="comment-input" rows="4" placeholder="Écrivez ici votre commentaire"></textarea>
 
-        <!-- validation -->
-        <div *ngIf="commentForm.get('comment')?.invalid && commentForm.get('comment')?.touched" class="mat-error">
-          <div *ngIf="commentForm.get('comment')?.errors?.['required']">
-            Le commentaire est requis.
+          <!-- validation -->
+          <div *ngIf="commentForm.get('comment')?.invalid && commentForm.get('comment')?.touched" class="mat-error">
+            <div *ngIf="commentForm.get('comment')?.errors?.['required']">
+              Le commentaire est requis.
+            </div>
           </div>
         </div>
 
