@@ -68,7 +68,8 @@ public class PostController {
     @Operation(summary = "Create a new post", description = "Create a post for the authenticated user.")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Post created successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid input")
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+            @ApiResponse(responseCode = "409", description = "A post with this title already exists")
     })
     @PostMapping("/posts")
     public ResponseEntity<PostResponseDTO> createPost(@RequestBody @Valid PostRequestDTO postRequestDTO) {
