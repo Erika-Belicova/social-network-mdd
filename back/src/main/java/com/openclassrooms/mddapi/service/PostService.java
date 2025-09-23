@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.service;
 
 import com.openclassrooms.mddapi.dto.post.PostRequestDTO;
 import com.openclassrooms.mddapi.dto.post.PostResponseDTO;
+import com.openclassrooms.mddapi.exception.DuplicateFieldValidationException;
 import com.openclassrooms.mddapi.exception.PostNotFoundException;
 import com.openclassrooms.mddapi.exception.TopicNotFoundException;
 import com.openclassrooms.mddapi.exception.UserNotFoundException;
@@ -50,6 +51,11 @@ public class PostService {
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
         Topic topic = topicRepository.findById(postRequestDTO.getTopicId())
                 .orElseThrow(() -> new TopicNotFoundException("Topic not found!"));
+
+        // check for duplicate title in the same topic
+        if (postRepository.existsByTitleAndTopicId(postRequestDTO.getTitle(), topic.getId())) {
+            throw new DuplicateFieldValidationException("A post with this title already exists!");
+        }
 
         Post post = postMapper.toPostEntity(postRequestDTO);
         post.setUser(user);

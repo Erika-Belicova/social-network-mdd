@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findByTopicId(Long topicId);
+    boolean existsByTitleAndTopicId(String title, Long topicId);
 }
