@@ -82,6 +82,7 @@ hr {
   color: #EA1A1A;
   display: block;
   width: 100%;
+  max-width: 280px;
   text-align: left;
   white-space: normal;
   margin: 4px 0 16px 0;
@@ -96,7 +97,7 @@ hr {
 }
 
 .user-input {
-  width: 280px;
+  max-width: 280px;
   height: 48px;
   padding: 12px 15px;
   border-radius: 8px;
@@ -122,6 +123,7 @@ hr {
 
 form {
   margin-top: 0rem;
+  max-width: 280px;
 }
 
 .card p {
