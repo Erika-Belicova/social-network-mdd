@@ -39,7 +39,6 @@
 
 .card p {
   display: -webkit-box;
-  display: box;
   -webkit-box-orient: vertical;
   box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -52,6 +51,10 @@
   word-wrap: break-word;
   word-break: break-word;
   white-space: normal;
+
+  /* Firefox fallback */
+  line-height: 1.2em;
+  max-height: calc(3 * 1.2em);
 }
 
 .purple-button {
