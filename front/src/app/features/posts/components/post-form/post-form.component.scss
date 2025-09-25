@@ -20,7 +20,7 @@ textarea {
   border: none;
   background: transparent;
   border-radius: 50%;
-  padding: 8px;
+  padding: 24px !important;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -53,7 +53,6 @@ textarea {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  overflow-y: auto;
   overflow-y: hidden;
 }
 
@@ -193,10 +192,7 @@ select option:disabled {
   }
 
   .arrow-button img {
-    width: 40px;
-    height: 40px;
     margin: 0;
-    display: block;
   }
 
   h3 {
@@ -208,10 +204,6 @@ select option:disabled {
 
   .main-content {
     padding: 16px 20px 0 20px !important;
-  }
-
-  .arrow-button:hover {
-    background-color: none;
   }
 
   .button-container {

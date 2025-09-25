@@ -1,9 +1,11 @@
 <div class="page-container" *ngIf="post">
   
   <div class="post-header">
-    <button mat-icon-button [routerLink]="['/posts']" aria-label="Back" class="arrow-button">
-      <img src="assets/arrow-left-icon.svg" alt="Back" />
-    </button>
+    <div class="arrow-wrapper">
+      <button mat-icon-button [routerLink]="['/posts']" aria-label="Back" class="arrow-button">
+        <img src="assets/arrow-left-icon.svg" alt="Back" />
+      </button>
+    </div>
     <h2>{{ post.title }}</h2>
   </div>
 
@@ -33,13 +35,6 @@
       <div class="comment-input-wrapper" [formGroup]="commentForm">
         <div class="textarea-wrapper">
           <textarea #commentInput formControlName="comment" class="comment-input" rows="4" placeholder="Écrivez ici votre commentaire"></textarea>
-
-          <!-- validation -->
-          <div *ngIf="commentForm.get('comment')?.invalid && commentForm.get('comment')?.touched" class="mat-error">
-            <div *ngIf="commentForm.get('comment')?.errors?.['required']">
-              Le commentaire est requis.
-            </div>
-          </div>
         </div>
 
         <!-- add button -->
@@ -47,6 +42,14 @@
           <img class="comment-button" src="assets/paper_plane.svg" alt="Add comment" />
         </button>
       </div>
+
+      <!-- validation -->
+      <div *ngIf="commentForm.get('comment')?.invalid && commentForm.get('comment')?.touched" class="mat-error">
+        <div *ngIf="commentForm.get('comment')?.errors?.['required']">
+          Le commentaire est requis.
+        </div>
+      </div>
+
     </div>
   </div>
 
