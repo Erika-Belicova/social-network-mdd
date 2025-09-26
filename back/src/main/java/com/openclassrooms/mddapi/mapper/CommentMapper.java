@@ -52,6 +52,7 @@ public class CommentMapper {
 
     /** Converts a list of comment entities to a list of CommentResponseDTOs */
     public List<CommentResponseDTO> toCommentResponseDTOList(List<Comment> comments) {
+        // map each comment entity to a CommentResponseDTO and collect into a list
         return comments.stream().map(this::toCommentResponseDTO).collect(Collectors.toList());
     }
 

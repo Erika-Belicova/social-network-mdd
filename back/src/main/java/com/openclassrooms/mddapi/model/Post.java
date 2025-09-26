@@ -40,7 +40,7 @@ public class Post {
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>(); // comments belonging to this post
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

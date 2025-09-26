@@ -45,7 +45,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "topic_id")
     )
-    private List<Topic> topics = new ArrayList<>();
+    private List<Topic> topics = new ArrayList<>(); // topics the user is subscribed to
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

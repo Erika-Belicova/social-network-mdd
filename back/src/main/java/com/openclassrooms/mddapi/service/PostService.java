@@ -47,16 +47,18 @@ public class PostService {
 
     @Transactional
     public PostResponseDTO savePost(Long userId, PostRequestDTO postRequestDTO) {
+        // fetch the user and topic, throw if not found
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
         Topic topic = topicRepository.findById(postRequestDTO.getTopicId())
                 .orElseThrow(() -> new TopicNotFoundException("Topic not found!"));
 
-        // check for duplicate title in the same topic
-        if (postRepository.existsByTitleAndTopicId(postRequestDTO.getTitle(), topic.getId())) {
+        // global duplicate title check
+        if (postRepository.existsByTitle(postRequestDTO.getTitle())) {
             throw new DuplicateFieldValidationException("A post with this title already exists!");
         }
 
+        // map DTO to entity and associate user and topic
         Post post = postMapper.toPostEntity(postRequestDTO);
         post.setUser(user);
         post.setTopic(topic);
@@ -67,6 +69,7 @@ public class PostService {
 
     @Transactional (readOnly = true)
     public PostResponseDTO getPostById(Long id) {
+        // retrieve post or throw exception if not found
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new PostNotFoundException("Post not found!"));
         return postMapper.toPostResponseDTO(post);
@@ -74,6 +77,7 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public List<PostResponseDTO> getPostsForUserTopics(String username) {
+        // fetch user by username or email
         User user = userRepository.findByUsernameOrEmail(username, username)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
 

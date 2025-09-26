@@ -44,11 +44,13 @@ public class CommentService {
 
     @Transactional
     public CommentResponseDTO saveComment(Long userId, Long postId, CommentRequestDTO commentRequestDTO) {
+        // fetch user and post, throw exception if not found
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostNotFoundException("Post not found!"));
 
+        // map DTO to entity and associate with user and post
         Comment comment = commentMapper.toCommentEntity(commentRequestDTO);
         comment.setUser(user);
         comment.setPost(post);
@@ -59,8 +61,11 @@ public class CommentService {
 
     @Transactional (readOnly = true)
     public List<CommentResponseDTO> getAllCommentsForPost(Long postId) {
+        // ensure the post exists
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostNotFoundException("Post not found!"));
+
+        // fetch all comments for the post and map to DTOs
         List<Comment> comments = commentRepository.findByPostId(postId);
         return commentMapper.toCommentResponseDTOList(comments);
     }

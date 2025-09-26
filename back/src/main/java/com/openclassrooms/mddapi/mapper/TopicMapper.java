@@ -29,6 +29,7 @@ public class TopicMapper {
 
     /** Converts a list of topic entities to a list of TopicDTOs */
     public List<TopicDTO> toTopicDTOList(List<Topic> topics) {
+        // map each topic entity to TopicDTO and collect into a list
         return topics.stream().map(this::toTopicDTO).collect(Collectors.toList());
     }
 
