@@ -31,10 +31,10 @@ public class Topic {
     private String description;
 
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>(); // posts belonging to this topic
 
     @ManyToMany(mappedBy = "topics")
-    private List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>(); // users subscribed to this topic
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

@@ -48,7 +48,7 @@ public class UserMapper {
 
         if (user.getTopics() != null && !user.getTopics().isEmpty()) {
             List<TopicDTO> topicDTOs = topicMapper.toTopicDTOList(user.getTopics());
-            userDTO.setTopics(topicDTOs);
+            userDTO.setTopics(topicDTOs); // include subscribed topics in DTO
         }
         return userDTO;
     }

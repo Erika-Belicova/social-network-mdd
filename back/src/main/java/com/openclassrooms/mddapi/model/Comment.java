@@ -26,11 +26,11 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
+    private User user; // author of the comment
 
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id", nullable = false)
-    private Post post;
+    private Post post; // post that this comment belongs to
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

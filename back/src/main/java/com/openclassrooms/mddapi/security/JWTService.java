@@ -39,6 +39,7 @@ public class JWTService {
                 .subject(subject)
                 .build();
 
+        // create encoder parameters with header and claims for token generation
         JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters
                 .from(JwsHeader.with(MacAlgorithm.HS256).build(), claims);
 

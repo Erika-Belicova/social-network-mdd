@@ -39,6 +39,7 @@ public class UserService {
 
     @Transactional
     public void registerUser(RegisterRequestDTO registerRequestDTO) {
+        // check uniqueness of username/email and encode password before saving new user
         if (userRepository.existsByUsername(registerRequestDTO.getUsername())) {
             throw new DuplicateFieldValidationException("Username is already in use");
         }
@@ -81,6 +82,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserDTO getUserByCredential(String credential) {
+        // retrieve user by username or email
         User user = userRepository.findByUsernameOrEmail(credential, credential)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         return userMapper.toUserDTO(user);
@@ -92,6 +94,8 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         Topic topic = topicRepository.findById(topicId)
                 .orElseThrow(() -> new TopicNotFoundException("Topic not found"));
+
+        // add topic subscription if not already subscribed
         if (!user.getTopics().contains(topic)) {
             user.getTopics().add(topic);
             userRepository.save(user);
@@ -104,6 +108,8 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         Topic topic = topicRepository.findById(topicId)
                 .orElseThrow(() -> new TopicNotFoundException("Topic not found"));
+
+        // remove topic subscription if currently subscribed
         if (user.getTopics().contains(topic)) {
             user.getTopics().remove(topic);
             userRepository.save(user);

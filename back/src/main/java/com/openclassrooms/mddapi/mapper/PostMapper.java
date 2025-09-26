@@ -28,19 +28,24 @@ public class PostMapper {
     /** Convert Post entity to PostResponseDTO */
     public PostResponseDTO toPostResponseDTO(Post post) {
         PostResponseDTO postResponseDTO = modelMapper.map(post, PostResponseDTO.class);
+
+        // set user information if available
         if (post.getUser() != null) {
             postResponseDTO.setUsername(post.getUser().getUsername());
             postResponseDTO.setUserId(post.getUser().getId());
         }
 
+        // set topic information if available
         if (post.getTopic() != null) {
             postResponseDTO.setTopicId(post.getTopic().getId());
             postResponseDTO.setTopicTitle(post.getTopic().getTitle());
         }
 
+        // map comments associated with the post
         if (post.getComments() != null) {
             postResponseDTO.setComments(commentMapper.toCommentResponseDTOList(post.getComments()));
         }
+
         return postResponseDTO;
     }
 
@@ -54,6 +59,7 @@ public class PostMapper {
 
     /** Converts a list of post entities to a list of PostResponseDTOs */
     public List<PostResponseDTO> toPostResponseDTOList(List<Post> posts) {
+        // map each post entity to a PostResponseDTO and collect into a list
         return posts.stream().map(this::toPostResponseDTO).collect(Collectors.toList());
     }
 }
