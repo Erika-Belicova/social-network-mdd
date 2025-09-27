@@ -45,10 +45,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable()) // stateless REST API
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // define endpoint authorization rules
                 .authorizeHttpRequests(auth -> auth
+                        // publicly accessible endpoints
                         .requestMatchers(
                                 "/",
                                 "/api/auth/login",
@@ -60,8 +62,9 @@ public class SecurityConfig {
                                 "/webjars/**"
                         ).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().authenticated() // all other endpoints require authentication
                 )
+                // configure JWT authentication for resource server
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
                 );
@@ -71,17 +74,20 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
+        // use secret key to decode incoming JWTs
         SecretKeySpec secretKeySpec = new SecretKeySpec(this.jwtProperties.getSecretKey().getBytes(), 0,
                 this.jwtProperties.getSecretKey().getBytes().length, "HmacSHA256");
         return NimbusJwtDecoder.withSecretKey(secretKeySpec).macAlgorithm(MacAlgorithm.HS256).build();
     }
 
     @Bean JwtEncoder jwtEncoder() {
+        // use secret key to sign outgoing JWTs
         return new NimbusJwtEncoder(new ImmutableSecret<>(this.jwtProperties.getSecretKey().getBytes()));
     }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        // password hashing
         return new BCryptPasswordEncoder();
     }
 
@@ -89,6 +95,7 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(HttpSecurity http,
                                                        BCryptPasswordEncoder passwordEncoder,
                                                        UserDetailsService userDetailsService) throws Exception {
+        // configure authentication with userDetailsService and password encoder
         AuthenticationManagerBuilder authBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
         return authBuilder.build();
@@ -97,7 +104,7 @@ public class SecurityConfig {
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
-        // don’t extract roles, just authenticate if JWT is valid
+        // do not extract roles, just authenticate if JWT is valid
         converter.setJwtGrantedAuthoritiesConverter(jwt -> Collections.emptyList());
         return converter;
     }

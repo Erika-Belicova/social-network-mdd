@@ -73,6 +73,7 @@ public class PostController {
     })
     @PostMapping("/posts")
     public ResponseEntity<PostResponseDTO> createPost(@RequestBody @Valid PostRequestDTO postRequestDTO) {
+        // get currently authenticated user from security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = userService.getUserByCredential(authentication.getName());
         PostResponseDTO createdPost = postService.savePost(userDTO.getId(), postRequestDTO);

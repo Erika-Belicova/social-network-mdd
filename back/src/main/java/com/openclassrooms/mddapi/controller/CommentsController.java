@@ -51,6 +51,7 @@ public class CommentsController {
     })
     @PostMapping("posts/{id}/comments")
     public ResponseEntity<CommentResponseDTO> addComment(@PathVariable("id") Long postId, @Valid @RequestBody CommentRequestDTO commentRequestDTO) {
+        // get currently authenticated user from security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = userService.getUserByCredential(authentication.getName());
         CommentResponseDTO createdComment = commentService.saveComment(userDTO.getId(), postId, commentRequestDTO);
