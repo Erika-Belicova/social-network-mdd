@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateFieldValidationException.class)
     public ResponseEntity<ErrorResponse> handleDuplicateFieldValidationException(DuplicateFieldValidationException exception) {
         logger.error("DuplicateFieldValidationException: ", exception);
-        // 409 conflict error due to duplicate username or email
+        // 409 conflict error due to duplicate username, email or post title
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(exception.getMessage()));
     }
 

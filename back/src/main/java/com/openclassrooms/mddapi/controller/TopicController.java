@@ -64,6 +64,7 @@ public class TopicController {
     })
     @PostMapping("/topics/{id}/subscriptions")
     public ResponseEntity<Void> subscribeToTopic(@PathVariable("id") Long topicId) {
+        // get currently authenticated user from security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = userService.getUserByCredential(authentication.getName());
         userService.subscribe(userDTO.getId(), topicId);
@@ -83,6 +84,7 @@ public class TopicController {
     })
     @DeleteMapping("/topics/{id}/subscriptions")
     public ResponseEntity<Void> unsubscribeFromTopic(@PathVariable("id") Long topicId) {
+        // get currently authenticated user from security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = userService.getUserByCredential(authentication.getName());
         userService.unsubscribe(userDTO.getId(), topicId);
