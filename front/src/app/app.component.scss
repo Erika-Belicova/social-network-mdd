@@ -12,15 +12,10 @@
   width: 48px;
   height: 48px;
   padding: 0;
-  background-color: rgb(128, 128, 128, 0.2);
   border-radius: 50%;
   filter: brightness(120%) opacity(80%);
   outline: solid 3px #ffffff;
   outline-offset: -3px; 
-}
-
-.profile-button.active-profile img {
-  filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
 }
 
 .navbar {
@@ -35,7 +30,6 @@
 
 .navbar-buttons {
   display: flex;
-  justify-content: right;
   align-items: center;
   gap: 1rem;
   flex: 1;
