@@ -16,6 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const url = new URL(req.url, window.location.origin);
 
     let request = req;
+    // attach Authorization header if token exists and endpoint is not excluded
     if (token && !excludedEndpoints.includes(url.pathname)) {
       request = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${token}`)
@@ -23,6 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(
+      // handle 401 errors globally by removing token and redirecting to login
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           this.tokenService.removeToken();

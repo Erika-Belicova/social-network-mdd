@@ -23,7 +23,7 @@ export class PostService {
 
   getPosts(): Observable<PostResponseDTO[]> {
     return this.http.get<PostsResponse>(this.baseUrl).pipe(
-      map(response => response.posts) // extract posts array
+      map(response => response.posts) // extract the posts array from API response
     );
   }
 }

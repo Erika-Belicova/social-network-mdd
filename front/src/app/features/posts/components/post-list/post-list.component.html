@@ -1,6 +1,6 @@
 <div class="page-container">
   <div class="buttons-top">
-    <button class="purple-button" [routerLink]="['/posts/create']">Créer un article</button>
+    <button class="purple-button" (click)="goToCreatePost()">Créer un article</button>
     <button class="sort-button" mat-button (click)="orderBy()">
       Trier par
       <!-- down arrow -->

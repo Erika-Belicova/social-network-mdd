@@ -19,7 +19,6 @@ import { NotFoundComponent } from './pages/components/not-found/not-found.compon
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { MeComponent } from './features/user/components/me/me.component';
-import { SubscriptionsComponent } from './features/user/components/subscriptions/subscriptions.component';
 import { PostListComponent } from './features/posts/components/post-list/post-list.component';
 import { PostDetailComponent } from './features/posts/components/post-detail/post-detail.component';
 import { PostFormComponent } from './features/posts/components/post-form/post-form.component';
@@ -40,7 +39,6 @@ registerLocaleData(localeFr);
     LoginComponent,
     RegisterComponent,
     MeComponent,
-    SubscriptionsComponent,
     PostListComponent,
     PostDetailComponent,
     PostFormComponent,

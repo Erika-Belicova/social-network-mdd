@@ -9,12 +9,13 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  currentRoute = '';
+  currentRoute = ''; // store current route path
 
   // capture the drawer from template
   @ViewChild('drawer') drawer!: MatSidenav;
 
   constructor(private router: Router, private authService: AuthService) {
+    // subscribe to route changes to update currentRoute
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
@@ -22,18 +23,19 @@ export class AppComponent {
     })
   }
 
+  // check if the current page is the homepage
   isHomepage(): boolean {
     return this.currentRoute === '/';
   }
 
+  // check if the current page is a public route
   isPublicRoute(): boolean {
     return ['/login', '/register'].includes(this.currentRoute);
   }
 
+  // logout user and redirect to homepage
   logout() {
     this.authService.logout();
-
-    // route to homepage
     this.router.navigate(['/']);
   }
 }

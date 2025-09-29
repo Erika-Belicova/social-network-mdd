@@ -9,8 +9,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   const token = tokenService.getToken();
 
   if (token) {
-    return true; // with token access allowed
+    return true; // allow route activation if token exists
   } else {
-    return router.createUrlTree(['/login']); // without a token redirect to login
+    return router.createUrlTree(['/login']); // redirect to login if token is missing
   }
 };

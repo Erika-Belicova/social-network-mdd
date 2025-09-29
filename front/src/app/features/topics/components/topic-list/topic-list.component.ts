@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TopicDTO } from '../../../topics/interfaces/topic-dto';
 import { UserService } from '../../../user/services/user.service';
 import { TopicService } from '../../../topics/services/topic.service';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-topic-list',
@@ -10,11 +11,12 @@ import { TopicService } from '../../../topics/services/topic.service';
 })
 export class TopicListComponent implements OnInit {
   topics: TopicDTO[] = [];
-  subscribedTopicIds = new Set<number>();
+  subscribedTopicIds = new Set<number>(); // track subscribed topic IDs
 
   constructor(
     private userService: UserService,
-    private topicService: TopicService
+    private topicService: TopicService,
+    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -28,24 +30,36 @@ export class TopicListComponent implements OnInit {
           next: (topics) => {
             this.topics = topics;
           },
-          error: (err) => console.error('Error fetching topics:', err)
+          error: () => {
+            this.snackbarService.showError(
+              "Impossible de récupérer les abonnements de l'utilisateur."
+            );
+          }
         });
       },
-      error: (err) => console.error('Error fetching user subscriptions:', err)
+      error: () => {
+        this.snackbarService.showError(
+          "Impossible de récupérer les abonnements de l'utilisateur."
+        );
+      }
     });
   }
 
   isSubscribed(topicId: number): boolean {
-    return this.subscribedTopicIds.has(topicId);
+    return this.subscribedTopicIds.has(topicId); // check if user is subscribed
   }
 
   subscribe(topicId: number) {
+    // subscribe user to topic
     this.userService.subscribe(topicId).subscribe({
       next: () => {
         this.subscribedTopicIds.add(topicId);
-        console.log(`Subscribed to topic ${topicId}`);
       },
-      error: (err) => console.error('Error subscribing:', err)
+      error: () => {
+        this.snackbarService.showError(
+          "Impossible de s'abonner au thème sélectionné."
+        );
+      }
     });
   }
 }
