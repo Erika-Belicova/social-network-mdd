@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../../auth/services/auth.service';
-import { TopicService } from '../../../topics/services/topic.service';
 import { TopicDTO } from '../../../topics/interfaces/topic-dto';
 import { UserDTO } from '../../interfaces/user-dto';
 import { UpdateUserDTO } from '../../interfaces/update-user-dto';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 import { Router } from '@angular/router';
 
 // optional password validator: only checks pattern if not empty
@@ -31,14 +30,13 @@ export class MeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private topicService: TopicService,
     private authService: AuthService,
-    private snackBar: MatSnackBar,
+    private snackbarService: SnackbarService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.loadUserProfile();
+    this.loadUserProfile(); // fetch user data on component init
   }
 
   loadUserProfile() {
@@ -48,18 +46,21 @@ export class MeComponent implements OnInit {
         this.userSubscriptions = user.topics;
         this.subscribedTopicIds = new Set(user.topics.map(topic => topic.id));
 
+         // initialize form with current user data, password is not shown
         this.profileForm = this.fb.group({
           username: [user.username, Validators.required],
           email: [user.email, [Validators.required, Validators.email]],
           password: ['', optionalPasswordValidator]
         });
       },
-      error: (err) => console.error('Error loading user profile:', err)
+      error: () => {
+        this.snackbarService.showError("Impossible de récupérer le profil utilisateur.");
+      }
     });
   }
   
   updateUser() {
-    this.profileForm.markAllAsTouched();
+    this.profileForm.markAllAsTouched(); // show validation messages
     if (!this.profileForm.valid) return;
 
     // check if profile information have been changed
@@ -70,11 +71,7 @@ export class MeComponent implements OnInit {
       (!!formValues.password && formValues.password.trim() !== '');
 
     if (!hasChanges) {
-      this.snackBar.open(
-        "Aucune modification détectée.",
-        'Fermer',
-        { duration: 3000, panelClass: ['snackbar-info'] }
-      );
+      this.snackbarService.showInfo("Aucune modification détectée.");
       return;
     }
 
@@ -90,13 +87,12 @@ export class MeComponent implements OnInit {
       updatedData.password = this.profileForm.value.password;
     }
 
+    // send update request
     this.userService.updateUser(updatedData as UpdateUserDTO).subscribe({
       next: () => {
-        // show snackbar
-        this.snackBar.open(
-          'Identifiants modifiés avec succès. Veuillez vous reconnecter avec vos nouveaux identifiants.',
-          'Fermer',
-          { duration: 5000 }
+        // show success message
+        this.snackbarService.showSuccess(
+          'Identifiants modifiés avec succès. Veuillez vous reconnecter avec vos nouveaux identifiants.'
         );
 
         // logout user and redirect to login page
@@ -104,8 +100,6 @@ export class MeComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.error('Error updating user:', err);
-
         let message = 'Une erreur est survenue lors de la mise à jour.'; // default message
 
         if (err.status === 409) {
@@ -114,24 +108,24 @@ export class MeComponent implements OnInit {
           message = "Données invalides. Veuillez vérifier le formulaire.";
         }
 
-        this.snackBar.open(message, 'Fermer', { duration: 5000, panelClass: ['snackbar-error'] });
+        this.snackbarService.showError(message);
 
-        // reset the form to current user data so invalid input is discarded
+        // reset form to current user data to discard invalid input
         this.loadUserProfile();
       }
     });
   }
 
   unsubscribe(topicId: number) {
+    // remove subscription from user
     this.userService.unsubscribe(topicId).subscribe({
       next: () => {
         this.userSubscriptions = this.userSubscriptions.filter(topic => topic.id !== topicId);
         this.subscribedTopicIds.delete(topicId);
       },
       error: (err) => {
-        console.error('Error unsubscribing:', err);
         const message = err?.error?.message || 'Une erreur est survenue lors du désabonnement.';
-        this.snackBar.open(message, 'Fermer', { duration: 5000, panelClass: ['snackbar-error'] });
+        this.snackbarService.showError(message);
       }
     });
   }

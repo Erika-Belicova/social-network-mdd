@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../../../core/services/token.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +21,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthService,
     private tokenService: TokenService,
-    private snackBar: MatSnackBar
+    private snackbarService: SnackbarService
   ) { }
 
   ngOnInit(): void {
+    // initialize reactive form with username or email and password fields
     this.loginForm = this.fb.group({
       usernameOrEmail: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -42,10 +43,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
   ngAfterViewInit(): void {
+    // attach global click listener after view init
     document.addEventListener('click', this.handleClickOutside);
   }
 
   ngOnDestroy(): void {
+    // remove global click listener to prevent memory leaks
     document.removeEventListener('click', this.handleClickOutside);
   }
 
@@ -56,6 +59,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
+    // send login request and handle token and navigation
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.tokenService.saveToken(response.token);
@@ -63,9 +67,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error: (err) => {
         const message = err.error?.message || 'Identifiants invalides.';
-        this.snackBar.open(message, 'Fermer', {
-          duration: 5000
-        });
+        this.snackbarService.showError(message);
       }
     });
   }

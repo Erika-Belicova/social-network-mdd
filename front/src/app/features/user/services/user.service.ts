@@ -31,7 +31,6 @@ export class UserService {
 
   // subscribe to a topic
   subscribe(topicId: number): Observable<void> {
-    console.log('Sending POST to:', `/api/topics/${topicId}/subscriptions`);
     return this.http.post<void>(`/api/topics/${topicId}/subscriptions`, {});
   }
 }

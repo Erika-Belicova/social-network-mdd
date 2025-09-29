@@ -144,6 +144,19 @@ form {
   max-height: calc(3 * 1.2em);
 }
 
+.no-subscriptions-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 1.8rem;
+  word-wrap: break-word;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .card {
     width: 100%;

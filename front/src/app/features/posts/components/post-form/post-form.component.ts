@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 import { TopicDTO } from '../../../topics/interfaces/topic-dto';
 import { PostService } from '../../services/post.service';
@@ -24,12 +24,13 @@ export class PostFormComponent implements OnInit {
     private fb: FormBuilder,
     private postService: PostService,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
-    this.fetchSubscribedTopics();
+    this.fetchSubscribedTopics(); // fetch subscribed topics of current user
 
+    // initialize reactive form with validation
     this.postForm = this.fb.group({
       topicId: ['', Validators.required],
       title: ['', Validators.required],
@@ -42,37 +43,27 @@ export class PostFormComponent implements OnInit {
       next: (user: UserDTO) => {
         this.topics = user.topics; // only subscribed topics
       },
-      error: (err) => {
-        console.error('Error fetching user subscriptions:', err);
-        this.snackBar.open(
-          'Impossible de charger vos thèmes abonnés.',
-          'Fermer',
-          { duration: 4000, panelClass: ['snackbar-error'] }
-        );
+      error: () => {
+        this.snackbarService.showError('Impossible de charger vos thèmes abonnés.');
       }
     });
   }
 
   submitPost() {
-    this.postForm.markAllAsTouched();
+    this.postForm.markAllAsTouched(); // trigger validation messages
     if (this.postForm.invalid) {
       return;
     }
 
     const postData: PostRequestDTO = this.postForm.value;
 
+    // create new post and handle response
     this.postService.createPost(postData).subscribe({
       next: (post: PostResponseDTO) => {
-        this.snackBar.open(
-          'Article créé avec succès !',
-          'Fermer',
-          { duration: 3000, panelClass: ['snackbar-success'] }
-        );
-        this.router.navigate(['/posts', post.id]);
+        this.snackbarService.showSuccess('Article créé avec succès !');
+        this.router.navigate(['/posts', post.id]); // navigate to created post
       },
       error: (err) => {
-        console.error('Error creating post:', err);
-
         let message = 'Une erreur est survenue lors de la création de l’article.';
         
         // check for duplicate title error from the back-end
@@ -80,7 +71,7 @@ export class PostFormComponent implements OnInit {
           message = 'Un article avec ce titre existe déjà.';
         }
 
-        this.snackBar.open(message, 'Fermer', { duration: 4000, panelClass: ['snackbar-error'] });
+        this.snackbarService.showError(message);
       }
     });
   }
