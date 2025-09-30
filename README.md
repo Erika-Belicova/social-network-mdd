@@ -1,25 +1,174 @@
-# P6-Full-Stack-reseau-dev
+# Social Network MDD
 
-## Front
+Social Network MDD (Monde de Dév) is a platform designed to help developers connect, collaborate, and create a talent pool for recruitment. This README documents the setup, structure, and implemented functionalities for the **MVP version** of the project.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+## Table of Contents
 
-Don't forget to install your node_modules before starting (`npm install`).
+1. Prerequisites  
+2. Clone the Project from GitHub  
+3. Database Setup  
+4. Set Environment Variables  
+5. Back-End Setup  
+6. Front-End Setup  
+7. Running the Application  
+8. MVP Functionalities  
+   - Back-End  
+   - Front-End  
+9. Swagger Documentation  
+10. Technologies & Libraries Used  
+11. Troubleshooting  
 
-### Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 1. Prerequisites
 
-### Build
+Before running the application, you need the following tools installed:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Node.js** (version 18)  
+- **Angular CLI** (version 18)  
+- **MySQL**  
+- **Java 17**  
+- **Maven**  
 
-### Where to start
+---
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+## 2. Clone the Project from GitHub
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+Open your terminal or command prompt and run:
+```
+git clone https://github.com/Erika-Belicova/social-network-mdd.git
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get rid of it.
+cd social-network-mdd
+```
 
-Good luck!
+The repository contains two main folders:
+
+- **back** – Spring Boot back-end  
+- **front** – Angular front-end  
+
+---
+
+## 3. Database Setup
+
+Make sure MySQL is installed and running.
+
+### Create the Database
+
+Run the following commands in your MySQL client:
+```
+CREATE DATABASE mdd;
+
+USE mdd;
+```
+
+- The database `mdd` will be used by the back-end  
+- JPA automatically manages table creation and updates (`spring.jpa.hibernate.ddl-auto=update`)  
+
+---
+
+## 4. Set Environment Variables
+
+Set the following system environment variables for database connection and JWT authentication:
+```
+DATABASE_USERNAME=your_mysql_username
+
+DATABASE_PASSWORD=your_mysql_password
+
+JWT_SECRET_KEY=your_jwt_secret_key
+```
+
+- Replace `your_mysql_username` and `your_mysql_password` with your MySQL credentials  
+- `JWT_SECRET_KEY` is used for signing and verifying tokens  
+
+---
+
+## 5. Back-End Setup
+
+Navigate to the back-end directory and install dependencies:
+```
+cd back
+
+mvn clean install
+```
+
+Start the back-end application:
+
+`mvn spring-boot:run`
+
+
+- The API will be available at **http://localhost:3001**  
+
+---
+
+## 6. Front-End Setup
+
+Navigate to the front-end directory and install dependencies:
+```
+cd front
+
+npm install
+```
+
+Start the front-end application:
+
+`npm run start`
+
+
+- The Angular app will be available at **http://localhost:4200**  
+
+---
+
+## 7. Running the Application
+
+1. Ensure MySQL is running and the `mdd` database is accessible  
+2. Start the back-end: `cd back && mvn spring-boot:run`  
+3. Start the front-end: `cd front && npm run start`  
+4. Open your browser at **http://localhost:4200**  
+
+---
+
+## 8. MVP Functionalities
+
+### Back-End
+
+- **User Management:** Registration, login, logout, profile view/update; optional password update; password encryption; JWT authentication  
+- **Topic Subscriptions:** List all topics, subscribe/unsubscribe, manage user-specific subscriptions  
+- **Posts & Comments:** Create posts, view posts, add comments (non-recursive); author and date automatically set  
+- **DTOs & Mapping:** Request and response DTOs for secure data transfer; ModelMapper automates conversion  
+- **Exception Handling:** Global `@ControllerAdvice` and custom exceptions for specific cases  
+- **Database:** MySQL with JPA entities: User, Topic, Post, Comment  
+- **Security:** Spring Security + JWT; unauthorized access returns HTTP 401  
+
+### Front-End
+
+- **Components:** Home, Login, Register, PostList, TopicList, PostForm, PostDetail, Me, NotFound  
+- **Navigation & Routing:** AppRoutingModule, AuthGuard for protected routes, routerLink navigation, dynamic navbar, NotFound component for invalid URLs  
+- **Forms & Validation:** ReactiveForms for validation, Snackbars for error messages, optional password update  
+- **Data Flow:** RxJS Observables for async data handling; strongly typed DTOs  
+- **UI & Responsiveness:** Angular Material components where possible; CSS with media queries for mobile (≤768px); hamburger menu on mobile  
+- **Synchronization:** DTO mapping ensures front-end logic matches back-end services and maquettes  
+
+---
+
+## 9. Swagger Documentation
+
+API documentation is available at: **http://localhost:3001/swagger-ui.html**  
+
+- Provides details on all API endpoints for testing and reference  
+
+---
+
+## 10. Technologies & Libraries Used
+
+**Back-End:** Java 17, Spring Boot, Spring Security, JWT, MySQL, Maven, JPA, ModelMapper, Swagger UI  
+
+**Front-End:** Angular 18, Angular CLI 18.2.20, Node.js 18, ReactiveForms, Angular Material, RxJS, CSS with media queries  
+
+---
+
+## 11. Troubleshooting
+
+- **Back-End does not start:** Check MySQL service and ensure environment variables are set  
+- **Front-End does not start:** Ensure dependencies are installed (`npm install && npm run start`)  
+- **API endpoints not responding:** Confirm back-end is running at **http://localhost:3001** and JWT secret is configured  
+- **Mobile UI issues:** Verify screen width ≤768px triggers responsive layout  
