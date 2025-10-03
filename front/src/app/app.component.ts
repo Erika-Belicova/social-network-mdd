@@ -30,7 +30,7 @@ export class AppComponent {
 
   // check if the current page is a public route
   isPublicRoute(): boolean {
-    return ['/login', '/register'].includes(this.currentRoute);
+    return ['/login', '/register', '/404'].includes(this.currentRoute);
   }
 
   // logout user and redirect to homepage

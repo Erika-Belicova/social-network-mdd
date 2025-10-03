@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'me', component: MeComponent, canActivate: [authGuard] },
 
   // route not found
-  { path: '**', component: NotFoundComponent }
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
