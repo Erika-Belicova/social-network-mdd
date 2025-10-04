@@ -14,7 +14,9 @@ Social Network MDD (Monde de Dév) is a platform designed to help developers con
 8. MVP Functionalities  
    - Back-End  
    - Front-End  
-9. Swagger Documentation  
+9. Documentation
+   - Javadoc
+   - Swagger
 10. Technologies & Libraries Used  
 11. Troubleshooting  
 
@@ -150,9 +152,23 @@ Start the front-end application:
 
 ---
 
-## 9. Swagger Documentation
+## 9. Documentation
 
-API documentation is available at: **http://localhost:3001/swagger-ui.html**  
+**Javadoc**
+
+Each class in the back-end has a Javadoc comment explaining its purpose.
+
+To generate Javadoc locally:
+```
+cd back
+
+mvn javadoc:javadoc
+```
+- Open the generated documentation in your browser: **target/reports/apidocs/index.html**
+
+**Swagger**
+
+The back-end API documentation is available at: **http://localhost:3001/swagger-ui.html**  
 
 - Provides details on all API endpoints for testing and reference  
 
