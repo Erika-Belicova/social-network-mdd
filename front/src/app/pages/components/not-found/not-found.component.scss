@@ -1,0 +1,8 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 100px;
+  min-height: calc(100vh - 100px);
+  box-sizing: border-box;
+}

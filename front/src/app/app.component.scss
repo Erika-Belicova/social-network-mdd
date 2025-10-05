@@ -1,0 +1,127 @@
+.navbar-img {
+  padding-top: 16px;
+}
+
+.logo {
+  height: auto;
+  width: 140px;
+  padding: 0;
+}
+
+.profile {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background-color: rgb(128, 128, 128, 0.2);
+  border-radius: 50%;
+  filter: brightness(120%) opacity(80%);
+  outline: solid 3px #ffffff;
+  outline-offset: -3px; 
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin-bottom: 0px;
+  height: 94px;
+  border-bottom: 1px solid #000;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  max-width: 50%;
+  justify-content: flex-end;
+}
+
+.button-red {
+  color: #A40F0F !important;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif !important;
+}
+
+button {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.button-purple {
+  color: #6c5ccf !important;
+}
+
+.profile-button.active-profile img {
+  filter: brightness(0) saturate(20%) invert(18%) sepia(77%) saturate(2412%) hue-rotate(245deg);
+  outline-width: 1px;
+}
+
+.desktop-nav {
+  display: flex;
+}
+
+.mobile-nav {
+  justify-content: space-between;
+  align-items: center;
+  height: 62px;
+  padding: 0 1rem;
+  border-bottom: 1px solid #000;
+  display: none;
+}
+
+.mobile-menu {
+  height: 100%;
+  width: 66%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.menu-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  margin-top: 50px;
+}
+
+.menu-top button {
+  width: auto;
+  align-self: flex-end;
+}
+
+.menu-bottom {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-nav-container {
+    display: block;
+    height: 100vh;
+  }
+
+  .mobile-nav {
+    display: flex !important;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+}

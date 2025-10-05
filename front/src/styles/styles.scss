@@ -1,4 +1,112 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  font-family: 'Inter', sans-serif !important;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-typography, 
+.mat-button, 
+.mat-input-element, 
+.mat-form-field-label, 
+.mat-error, 
+.mat-card-title, 
+.mat-card-content, 
+.mat-tab-label, 
+.mat-snack-bar-container {
+  font-family: 'Inter', sans-serif !important;
+}
+
+body {
+  margin: 0;
+}
+
+.navbar {
+  border-bottom: 1px solid #000000;
+  padding-bottom: 10px;
+  height: 60px;
+}
+
+.navbar-img {
+  padding: 10px;
+  height: 40px;
+}
+
+h3 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+h2 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  text-align: center;
+}
+
+h4 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+p {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+.button-outline-black {
+  color: black !important;
+  border-color: black !important;
+  border-radius: 8px !important;
+  border-width: 1px;
+  padding: 6px 16px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+:root {
+  --mat-snack-bar-button-color: #b8a7ff;
+  --font-primary: 'Inter', sans-serif;
+}
+
+.mat-button, .mat-input-element, .mat-error {
+  font-family: 'Inter', sans-serif;
+}
+
+.purple-button {
+  font-family: 'Inter', sans-serif !important;
+  background-color: #7763C5;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  height: 44px;
+  padding: 10px 24px !important;
+  margin: 16px 0;
+  box-shadow: none !important;
+  border: none;
+  cursor: pointer;
+}
+
+.purple-button:hover {
+  font-family: 'Inter', sans-serif !important;
+  background-color: #6050a2;
+  box-shadow: none !important;
+}
+
+.purple-button:disabled {
+  font-family: 'Inter', sans-serif !important;
+  background-color: #939393;
+  color: #ffffff;
+  opacity: 0.7;
+  box-shadow: none !important;
+  cursor: default;
+}

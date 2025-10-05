@@ -1,0 +1,117 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h3 {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  margin-bottom: 20px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+label {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+.mat-error {
+  font-size: 0.9rem;
+  color: #EA1A1A;
+  display: block;
+  font-family: 'Inter', sans-serif !important;
+  width: 230px;
+  text-align: left;
+  white-space: normal;
+  margin: -16px 0 16px 0;
+  padding: 0 4px;
+  word-break: break-word;
+  min-height: 1.2rem;
+}
+
+.purple-button {
+  background-color: #7763C5;
+  color: white;
+  border-radius: 8px;
+  height: 44px;
+  min-width: 140px;
+  box-shadow: none !important;
+  margin: 20px;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.purple-button:hover {
+  background-color: #6050a2;
+  box-shadow: none !important;
+}
+
+.user-input {
+  width: 218px;
+  padding: 15px 16px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  font-size: 1rem;
+  outline: none;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.user-input:focus {
+  border-color: #4a148c;
+  box-shadow: 0 0 5px rgba(75, 0, 130, 0.5);
+}
+
+form {
+  margin-top: 1rem;
+}
+
+.arrow-button {
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  margin: 12px 36px;
+}
+
+.arrow-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.arrow-button img {
+  width: 40px;
+  height: 40px;
+  margin: 0.75rem 2rem;
+  display: block;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#logo {
+  width: 250px;
+  margin: 0 auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  #logo.hidden {
+    display: block !important;
+  }
+
+  .center {
+    justify-content: flex-start;
+    height: auto;
+    min-height: auto;
+  }
+}

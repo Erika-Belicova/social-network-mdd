@@ -1,0 +1,122 @@
+.buttons-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100vw;
+  margin-bottom: 36px;
+}
+
+.card {
+  background-color: #EEEEEE;
+  padding: 16px;
+  border-radius: 8px;
+  width: calc(50% - 1.25rem);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.card:hover {
+  background-color: #d6d6d6b4;
+}
+
+.purple-button {
+  margin: 0;
+}
+
+.sort-button {
+  font-family: 'Inter', sans-serif !important;
+  color: #000000;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.sort-icon {
+  vertical-align: top;
+  width: auto;
+  height: 20px;
+  margin-left: 4px;
+}
+
+.container-padding {
+  margin: 0 40px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.5rem 2.5rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.post-data {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-container {
+  margin: 0 auto !important;
+  padding: 30px 40px !important;
+  flex: 1;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+
+.post-data > h4 {
+  flex: 1;
+  text-align: left;
+}
+
+.card p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: normal;
+  margin-bottom: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  
+  /* Firefox fallback */
+  line-height: 1.2em;
+  max-height: calc(5 * 1.2em);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+
+  .cards-container {
+    gap: 1.5rem !important;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .buttons-top {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-container {
+    padding: 24px !important;
+  }
+}

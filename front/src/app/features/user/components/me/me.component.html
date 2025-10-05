@@ -1,0 +1,58 @@
+<div class="main-content">
+  <div class="profile">
+    <h2>Profil utilisateur</h2>
+    <div class="profile-info">
+      <form *ngIf="profileForm" [formGroup]="profileForm" (ngSubmit)="updateUser()">
+
+        <input id="username" formControlName="username" class="user-input" type="text" placeholder="Nom d’utilisateur" autocomplete="username" />
+        <div *ngIf="profileForm.get('username')?.invalid && profileForm.get('username')?.touched" class="mat-error">
+          Le nom d’utilisateur est requis.
+        </div>
+
+        <input id="email" formControlName="email" class="user-input" type="email" placeholder="E-mail" autocomplete="email" />
+        <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="mat-error">
+          Un e-mail valide est requis.
+        </div>
+
+        <input id="password" formControlName="password" class="user-input" type="password"  placeholder="Mot de passe" autocomplete="current-password"/>
+        <div *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched" class="mat-error">
+          <div *ngIf="profileForm.get('password')?.errors?.['pattern']">
+            Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.
+          </div>
+        </div>
+
+        <div class="center button-container">
+          <button type="submit" class="purple-button">
+            Sauvegarder
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr />
+
+  <div class="subscriptions-container">
+    <h2>Abonnements</h2>
+    <ng-container *ngIf="userSubscriptions.length > 0; else noSubscriptions"></ng-container>
+
+    <ng-template #noSubscriptions>
+      <p class="no-subscriptions-message">
+        Lorsque vous vous abonnez à un thème, vos abonnements seront affichés ici.
+      </p>
+    </ng-template>
+
+    <div class="container-padding cards-container">
+      <div *ngFor="let topic of userSubscriptions" class="card">
+        <h3>{{ topic.title }}</h3>
+        <p>{{ topic.description }}</p>
+        <button
+          type="button"
+          class="purple-button unsubscribe-button"
+          (click)="unsubscribe(topic.id)">
+          Se désabonner
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

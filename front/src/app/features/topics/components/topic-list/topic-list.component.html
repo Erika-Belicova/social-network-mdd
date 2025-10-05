@@ -1,0 +1,11 @@
+<div class="page-container">
+  <div class="container-padding cards-container">
+    <div *ngFor="let topic of topics" class="card">
+      <h3>{{ topic.title }}</h3>
+      <p>{{ topic.description }}</p>
+      <button type="button" class="purple-button" (click)="subscribe(topic.id)" [disabled]="isSubscribed(topic.id)">
+        {{ isSubscribed(topic.id) ? "Déjà abonné" : "S'abonner" }}
+      </button>
+    </div>
+  </div>
+</div>
