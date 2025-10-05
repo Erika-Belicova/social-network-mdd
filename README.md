@@ -64,8 +64,30 @@ USE mdd;
 ```
 
 - The database `mdd` will be used by the back-end  
-- JPA automatically manages table creation and updates (`spring.jpa.hibernate.ddl-auto=update`)  
+- The tables (User, Topic, Post, Comment) are automatically created and managed by JPA (`spring.jpa.hibernate.ddl-auto=update`) when the back-end runs for the first time
 
+### Start the Back-End Once
+
+Start the back-end so that JPA can create the necessary tables:
+```
+cd back
+
+mvn spring-boot:run
+```
+
+### Add Pre-Existing Topics
+
+The MVP requires at least one topic in the database to work correctly. As this MVP version does not include an admin or back-office interface, add topics manually using SQL commands.
+
+It is recommended to add 3–4 topics to properly test the application, for example:
+```
+INSERT INTO TOPICS (title, description) VALUES ('Java', 'All things Java programming');
+INSERT INTO TOPICS (title, description) VALUES ('Spring Boot', 'Back-end development with Spring Boot');
+INSERT INTO TOPICS (title, description) VALUES ('Angular', 'Front-end development with Angular');
+INSERT INTO TOPICS (title, description) VALUES ('SQL', 'Database management and queries');
+```
+- Ensure at least one topic exists before continuing.
+  
 ---
 
 ## 4. Set Environment Variables
@@ -95,8 +117,9 @@ mvn clean install
 
 Start the back-end application:
 
-`mvn spring-boot:run`
-
+```
+mvn spring-boot:run
+```
 
 - The API will be available at **http://localhost:3001**  
 
@@ -113,8 +136,9 @@ npm install
 
 Start the front-end application:
 
-`npm run start`
-
+```
+npm run start
+```
 
 - The Angular app will be available at **http://localhost:4200**  
 
@@ -123,9 +147,25 @@ Start the front-end application:
 ## 7. Running the Application
 
 1. Ensure MySQL is running and the `mdd` database is accessible  
-2. Start the back-end: `cd back && mvn spring-boot:run`  
-3. Start the front-end: `cd front && npm run start`  
-4. Open your browser at **http://localhost:4200**  
+2. Start the back-end:
+ 
+   ```
+   cd back
+   
+   mvn spring-boot:run
+   ```
+   
+3. Start the front-end:
+ 
+   ```
+   cd front
+
+   npm run start
+   ```
+   
+4. Open your browser at **http://localhost:4200**
+
+You should see the front-end UI, which will interact with the back-end API running at **http://localhost:3001**
 
 ---
 
@@ -137,7 +177,7 @@ Start the front-end application:
 - **Topic Subscriptions:** List all topics, subscribe/unsubscribe, manage user-specific subscriptions  
 - **Posts & Comments:** Create posts, view posts, add comments (non-recursive); author and date automatically set  
 - **DTOs & Mapping:** Request and response DTOs for secure data transfer; ModelMapper automates conversion  
-- **Exception Handling:** Global `@ControllerAdvice` and custom exceptions for specific cases  
+- **Exception Handling:** Global @ControllerAdvice and custom exceptions for specific cases  
 - **Database:** MySQL with JPA entities: User, Topic, Post, Comment  
 - **Security:** Spring Security + JWT; unauthorized access returns HTTP 401  
 
@@ -154,7 +194,7 @@ Start the front-end application:
 
 ## 9. Documentation
 
-**Javadoc**
+### Javadoc
 
 Each class in the back-end has a Javadoc comment explaining its purpose.
 
@@ -166,7 +206,7 @@ mvn javadoc:javadoc
 ```
 - Open the generated documentation in your browser: **target/reports/apidocs/index.html**
 
-**Swagger**
+### Swagger
 
 The back-end API documentation is available at: **http://localhost:3001/swagger-ui.html**  
 
@@ -176,7 +216,7 @@ The back-end API documentation is available at: **http://localhost:3001/swagger-
 
 ## 10. Technologies & Libraries Used
 
-**Back-End:** Java 17, Spring Boot, Spring Security, JWT, MySQL, Maven, JPA, ModelMapper, Swagger UI  
+**Back-End:** Java 17, Spring Boot, Spring Security, JWT, MySQL, Maven, JPA, ModelMapper, Javadoc, Swagger UI  
 
 **Front-End:** Angular 18, Angular CLI 18.2.20, Node.js 18, ReactiveForms, Angular Material, RxJS, CSS with media queries  
 
@@ -184,7 +224,19 @@ The back-end API documentation is available at: **http://localhost:3001/swagger-
 
 ## 11. Troubleshooting
 
-- **Back-End does not start:** Check MySQL service and ensure environment variables are set  
-- **Front-End does not start:** Ensure dependencies are installed (`npm install && npm run start`)  
+- **Back-End does not start:** Verify that MySQL server is running and ensure environment variables are set. Then, ensure dependencies are installed:
+  
+  ```
+  mvn clean install
+  mvn spring-boot:run
+  ```
+  
+- **Front-End does not start:** Ensure dependencies are installed
+  
+  ```
+  npm install
+  npm run start
+  ```
+   
 - **API endpoints not responding:** Confirm back-end is running at **http://localhost:3001** and JWT secret is configured  
 - **Mobile UI issues:** Verify screen width ≤768px triggers responsive layout  
