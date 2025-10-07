@@ -75,19 +75,29 @@ cd back
 mvn spring-boot:run
 ```
 
+### Adjust Column Sizes for Long Text
+
+By default, Spring Boot generates `VARCHAR(255)` for string fields. To allow longer text for topics, posts, and comments, run the following SQL commands to adjust the column sizes:
+```
+ALTER TABLE TOPICS MODIFY description VARCHAR(1000);
+ALTER TABLE POSTS MODIFY content VARCHAR(1000);
+ALTER TABLE COMMENTS MODIFY content VARCHAR(1000);
+```
+- This allows topic descriptions and the content of posts and comments to store up to 1000 characters.
+
 ### Add Pre-Existing Topics
 
-The MVP requires at least one topic in the database to work correctly. As this MVP version does not include an admin or back-office interface, add topics manually using SQL commands.
+The MVP requires at least one topic in the database to work correctly. As this MVP version does not include an admin or back-office interface, add topics manually using SQL commands. Include timestamps to match the entity fields.
 
 It is recommended to add 3–4 topics to properly test the application, for example:
 ```
-INSERT INTO TOPICS (title, description) VALUES ('Java', 'All things Java programming');
-INSERT INTO TOPICS (title, description) VALUES ('Spring Boot', 'Back-end development with Spring Boot');
-INSERT INTO TOPICS (title, description) VALUES ('Angular', 'Front-end development with Angular');
-INSERT INTO TOPICS (title, description) VALUES ('SQL', 'Database management and queries');
+INSERT INTO TOPICS (title, description, created_at, updated_at) VALUES ('Java', 'All things Java programming', NOW(), NOW());
+INSERT INTO TOPICS (title, description, created_at, updated_at) VALUES ('Spring Boot', 'Back-end development with Spring Boot', NOW(), NOW());
+INSERT INTO TOPICS (title, description, created_at, updated_at) VALUES ('Angular', 'Front-end development with Angular', NOW(), NOW());
+INSERT INTO TOPICS (title, description, created_at, updated_at) VALUES ('SQL', 'Database management and queries', NOW(), NOW());
 ```
 - Ensure at least one topic exists before continuing.
-  
+
 ---
 
 ## 4. Set Environment Variables
