@@ -33,6 +33,7 @@
 }
 
 .page-container {
+  min-height: calc(100vh - 160px);
   margin: 0 auto !important;
   padding: 30px !important;
 }

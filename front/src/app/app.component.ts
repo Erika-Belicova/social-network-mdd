@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'front'; 
   currentRoute = ''; // store current route path
 
   // capture the drawer from template
