@@ -42,6 +42,6 @@ export class AuthService {
 	public logout(): void {
     this.tokenService.removeToken();
     this.userService.clearCache(); // reset cached user data
-    localStorage.removeItem('postsSortOrder'); // reset sort order on logout
+    localStorage.clear(); // remove all locally stored user data
   }
 }
