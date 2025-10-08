@@ -1,0 +1,29 @@
+<button mat-icon-button [routerLink]="['/']" aria-label="Back" class="arrow-button">
+  <img src="assets/arrow-left-icon.svg" alt="Back" />
+</button>
+
+<!-- logo for mobile -->
+<img src="/assets/logo_p6.png" alt="logo" id="logo" class="hidden" />
+
+<div class="center">
+  <h3>Se connecter</h3>
+  <form #loginFormRef [formGroup]="loginForm" (ngSubmit)="login()">
+    <label for="usernameOrEmail">E-mail ou nom d’utilisateur</label>
+    <input id="usernameOrEmail" formControlName="usernameOrEmail" matInput class="user-input" type="text" autocomplete="username" />
+    <div *ngIf="submitted && loginForm.get('usernameOrEmail')?.invalid" class="mat-error">
+      L’adresse e-mail ou le nom d’utilisateur est requis.
+    </div>
+
+    <label for="password">Mot de passe</label>
+    <input id="password" formControlName="password" matInput class="user-input" type="password" autocomplete="current-password" />
+    <div *ngIf="submitted && loginForm.get('password')?.invalid" class="mat-error">
+      Le mot de passe est requis.
+    </div>
+
+    <div class="center">
+      <button mat-button type="submit" class="purple-button">
+        Se connecter
+      </button>
+    </div>
+  </form>
+</div>

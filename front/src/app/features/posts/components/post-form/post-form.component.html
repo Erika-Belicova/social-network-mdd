@@ -1,0 +1,43 @@
+<div class="main-content">
+
+  <div class="form-header-wrapper">
+    <button mat-icon-button [routerLink]="['/posts']" aria-label="Back" class="arrow-button">
+      <img src="assets/arrow-left-icon.svg" alt="Back" />
+    </button>
+    <h3>Créer un nouvel article</h3>
+  </div>
+
+  <div class="post-info">
+    <form *ngIf="postForm" [formGroup]="postForm" (ngSubmit)="submitPost()">
+      <!-- topic select -->
+      <select id="topic" formControlName="topicId" class="select" required>
+        <option value="" disabled invalid>Sélectionner un thème</option>
+        <option *ngFor="let topic of topics" [value]="topic.id">{{ topic.title }}</option>
+      </select>
+      <div *ngIf="postForm.get('topicId')?.invalid && postForm.get('topicId')?.touched" class="mat-error">
+        Le thème est requis.
+      </div>
+
+      <!-- title -->
+      <input id="title" formControlName="title" class="user-input" type="text" placeholder="Titre de l’article"/>
+      <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="mat-error">
+        Le titre est requis.
+      </div>
+
+      <!-- content -->
+      <textarea id="content" formControlName="content" class="user-input" rows="8" placeholder="Contenu de l’article"></textarea>
+      <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched" class="mat-error">
+        <div *ngIf="postForm.get('content')?.errors?.['required']">
+          Le contenu est requis.
+        </div>
+      </div>
+
+      <div class="center button-container">
+        <button type="submit" class="purple-button-form">
+          Créer
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

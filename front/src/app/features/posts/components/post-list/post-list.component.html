@@ -1,0 +1,30 @@
+<div class="page-container">
+  <div class="buttons-top">
+    <button class="purple-button" (click)="goToCreatePost()">Créer un article</button>
+    <button class="sort-button" mat-button (click)="orderBy()">
+      Trier par
+      <!-- down arrow -->
+      <ng-container *ngIf="sortDescending">
+        <svg class="sort-icon" width="8" height="17" viewBox="0 0 8 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.64645 16.3536C3.84171 16.5488 4.15829 16.5488 4.35355 16.3536L7.53553 13.1716C7.7308 12.9763 7.7308 12.6597 7.53553 12.4645C7.34027 12.2692 7.02369 12.2692 6.82843 12.4645L4 15.2929L1.17157 12.4645C0.976311 12.2692 0.659728 12.2692 0.464466 12.4645C0.269204 12.6597 0.269204 12.9763 0.464466 13.1716L3.64645 16.3536ZM3.5 0L3.5 16H4.5L4.5 0L3.5 0Z" fill="black"/>
+        </svg>
+      </ng-container>
+      <!-- up arrow -->
+      <ng-container *ngIf="!sortDescending">
+        <svg class="sort-icon" width="8" height="17" viewBox="0 0 8 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.64645 0.646446C3.84171 0.451184 4.15829 0.451184 4.35355 0.646446L7.53553 3.82843C7.7308 4.02369 7.7308 4.34027 7.53553 4.53553C7.34027 4.7308 7.02369 4.7308 6.82843 4.53553L4 1.70711L1.17157 4.53553C0.976311 4.7308 0.659728 4.7308 0.464466 4.53553C0.269204 4.34027 0.269204 4.02369 0.464466 3.82843L3.64645 0.646446ZM3.5 17L3.5 1H4.5V17H3.5Z" fill="black"/>
+        </svg>
+      </ng-container>
+    </button>
+  </div>
+  <div class="container-padding cards-container">
+    <a *ngFor="let post of posts" class="card" (click)="goToPost(post.id)">
+      <h3>{{ post.title }}</h3>
+      <div class="post-data flex">
+        <h4>{{ post.created_at | date: 'longDate' }}</h4>
+        <h4>{{ post.username || 'Auteur inconnu'}}</h4>
+      </div>
+      <p>{{ post.content }}</p>
+    </a>
+  </div>
+</div>

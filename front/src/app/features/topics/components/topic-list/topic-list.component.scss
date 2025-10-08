@@ -1,0 +1,78 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card {
+  background-color: #EEEEEE;
+  padding: 16px;
+  border-radius: 8px;
+  width: calc(50% - 0.5rem);
+  box-sizing: border-box;
+  transition: background-color 0.1s ease;
+}
+
+.container-padding {
+  margin: 40px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.cards-container .card button {
+  display: block;
+  margin: 0 auto;
+}
+
+.page-container {
+  min-height: calc(100vh - 160px);
+  margin: 0 auto !important;
+  padding: 30px !important;
+}
+
+.card p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 16px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+
+  /* Firefox fallback */
+  line-height: 1.2em;
+  max-height: calc(3 * 1.2em);
+}
+
+.purple-button {
+  width: 160px !important;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+
+  .cards-container {
+    gap: 1.5rem !important;
+    margin: 0px auto;
+    justify-content: center;
+  }
+
+  .page-container {
+    padding: 24px !important;
+  }
+}
